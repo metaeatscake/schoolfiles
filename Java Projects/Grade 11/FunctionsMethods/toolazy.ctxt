@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=toolazy
+comment1.params=args
+comment1.target=void\ clearScreen(java.lang.String[])
+comment2.params=
+comment2.target=void\ pause()
+numComments=3

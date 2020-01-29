@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=ReturnWithParams
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=choice
+comment2.target=java.lang.String\ introduce(int)
+numComments=3

@@ -1,2 +1,2 @@
 # schoolfiles
-All Coding activities from 11th to 12th grade.
+All Coding activities, plus a little more.

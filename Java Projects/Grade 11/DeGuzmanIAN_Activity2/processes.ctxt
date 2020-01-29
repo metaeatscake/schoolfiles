@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=processes
+comment1.params=
+comment1.target=void\ item1()
+comment2.params=
+comment2.target=void\ item2()
+comment3.params=
+comment3.target=void\ item3()
+comment4.params=
+comment4.target=void\ item4()
+comment5.params=
+comment5.target=void\ item5()
+comment6.params=arg
+comment6.target=void\ clearScreen(java.lang.String[])
+comment7.params=
+comment7.target=void\ pause()
+comment8.params=
+comment8.target=void\ dividerLine()
+numComments=9

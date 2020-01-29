@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Item4
+comment1.params=hours\ rate\ deductions
+comment1.target=double\ netpay(double,\ double,\ double)
+comment1.text=\r\nSelf\ notes\:\ The\ process\ is\ already\ here.\ simple\ format\:\r\n\r\n\ public\ <dataType>\ <processname>(<dataType>\ var1,\ <datatype>\ var2\ ...){\r\n\ \ \ \ \ \r\n\ \ \ \ \ return(<process;\ what\ to\ do\ with\ these\ variables>);\ \r\n\ }\r\n\ \r\n\ Edit\ after\ completing\ item5\:\ you\ can\ declare\ variables\ and\ do\ stuff\ within\ this\ method\ too.\r\n
+comment2.params=name
+comment2.target=java.lang.String\ empname(java.lang.String)
+comment3.params=args
+comment3.target=void\ main(java.lang.String[])
+numComments=4

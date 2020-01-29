@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=processRWP
+comment1.params=in1\ in2\ in3
+comment1.target=java.lang.String\ item1(int,\ int,\ int)
+comment2.params=workHours\ workRate\ deductions
+comment2.target=java.lang.String\ item2(double,\ double,\ double)
+comment3.params=midterm\ finalExam
+comment3.target=java.lang.String\ item3(double,\ double)
+comment4.params=courseTitle\ enrollees
+comment4.target=java.lang.String\ item4(java.lang.String,\ int)
+comment5.params=name\ basicSalary\ serviceTime
+comment5.target=java.lang.String\ item5(java.lang.String,\ double,\ double)
+numComments=6

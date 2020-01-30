@@ -16,7 +16,7 @@ Also so I can practice using github.
 
 * Java
     1. .java files are created/edited through VS Code
-    1. .java files are compiled through BlueJ because it's easier
+    1. .java files are compiled and tested through BlueJ because it's easier
     1. VS Code commits the changes
     1. Github Desktop pushes the changes
     1. A webhook to a channel in our discord server sends a notification.

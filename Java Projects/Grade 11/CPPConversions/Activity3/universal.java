@@ -78,5 +78,8 @@ class universal
         System.out.println("\nEnter choice: ");
     }
 
-
+    public static void main(String[] args) throws IOException, InterruptedException
+    {
+        // just so I can compile this.
+    }
 }

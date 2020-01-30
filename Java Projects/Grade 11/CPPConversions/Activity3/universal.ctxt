@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.target=universal
+comment1.params=
+comment1.target=void\ clearScreen()
+comment10.params=args
+comment10.target=void\ main(java.lang.String[])
+comment2.params=
+comment2.target=void\ pause()
+comment3.params=
+comment3.target=void\ invalidInput()
+comment4.params=
+comment4.target=void\ goodbye()
+comment5.params=
+comment5.target=int\ intInput()
+comment6.params=
+comment6.target=double\ doubleInput()
+comment7.params=
+comment7.target=void\ desci1()
+comment8.params=
+comment8.target=void\ desci2()
+comment9.params=
+comment9.target=void\ menu()
+numComments=11

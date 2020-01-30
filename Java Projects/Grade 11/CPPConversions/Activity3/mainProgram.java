@@ -42,6 +42,14 @@ class mainProgram extends universal
 
     }
 
+    void item2()
+    {
+        String employeeName;
+        double basicSalary, overtime;
+
+        // im too lazy. i'll finish this later.
+    }
+
     public static void main(String[] args) throws IOException, InterruptedException
     {
         String menuChoice = "";
@@ -65,6 +73,11 @@ class mainProgram extends universal
 
                 case "2": case "i2":
 
+                    mP.clearScreen();
+                    mP.desci2();
+                    mP.item2();
+                    mP.pause();
+
                 break;
 
                 case "3":
@@ -79,4 +92,5 @@ class mainProgram extends universal
         }
 
     }
+
 }

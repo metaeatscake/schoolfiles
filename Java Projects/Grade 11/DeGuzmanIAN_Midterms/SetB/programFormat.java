@@ -1,34 +1,27 @@
 import java.io.*;
 import java.util.*;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 public class programFormat
 {
     public static Scanner sc = new Scanner(System.in);
     public static programFormat obj = new programFormat();
 
+    public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+    public static LocalDateTime now = LocalDateTime.now();
+
     // Basic Variables
-    int intNum1 = 0, intNum2 = 0, intNum3 = 0;
-    double doubleNum1 = 0, doubleNum2 = 0, doubleNum3 = 0;
-    String name1 = "", name2 = "", name3 = "";
+    static int intNum1 = 0, intNum2 = 0, intNum3 = 0;
+    static double doubleNum1 = 0, doubleNum2 = 0, doubleNum3 = 0;
+    static String name1 = "", name2 = "", name3 = "";
 
     // Arrays
-    int arraySize1 = 0, arraySize2 = 0, arraySize3 = 0, arraySize4 = 0;
-    int choiceIndex1 = 0, choiceIndex2 = 0, choiceIndex3 = 0, choiceIndex = 0;
-    int arrayInputInt = 0;
-    double arrayInputDouble = 0;
-    String arrayInputString = "";
-
-    int arrayInt[] = new int[arraySize1];
-    double arrayDouble1[] = new double[arraySize2];
-    double arrayDouble2[] = new double[arraySize3];
-    String arrayString[] = new String[arraySize4];
-
-    // Verifications
-    boolean condition1 = false;
-    boolean condition2 = false;
+    static int arraySize1 = 0, arraySize2 = 0;
 
     // Menus
-    String menuChoice = "";
+    static String menuChoice = "";
+    static String subMenu = "";
 
     // Methods
     public void clearScreen() throws InterruptedException, IOException
@@ -62,15 +55,9 @@ public class programFormat
         return Double.parseDouble(sc.nextLine());
     }
 
-    public double inputPassD(double receiver[], int arrayIndex)
+    // In case I want to add a logging system to the ATM
+    public String currentTime()
     {
-        receiver[arrayIndex] = doubleInput();
-        return receiver[arrayIndex];
-    }
-
-    public int inputPassI(int receiver[], int arrayIndex)
-    {
-        receiver[arrayIndex] = intInput();
-        return receiver[arrayIndex];
+        return dtf.format(now);
     }
 }

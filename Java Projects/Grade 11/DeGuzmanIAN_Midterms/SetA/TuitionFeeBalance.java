@@ -1,30 +1,9 @@
 import java.io.*;
+import Utils;
 
-public class process_long1 extends processes
+class TuitionFeeBalance extends programFormat
 {
-    // Methods will be called using this object. 
-    // The static modifier will then be removed for the rest of the code.
-    public static process_long1 objI5 = new process_long1();
-    
-    public void item5_inputGuideA()
-    {
-        System.out.println("Year Code\tYear Name\tRate per unit");
-        System.out.println("1\t\tFreshman\t400");
-        System.out.println("2\t\tSophomore\t350");
-        System.out.println("3\t\tJunior\t\t300");
-        System.out.println("4 and 5\t\tSenior\t\t250");
-    }
-
-    public void item5_inputGuideB()
-    {
-        System.out.println("Number of units\t\tDown Payment");
-        System.out.println("1-9\t\t\t1000");
-        System.out.println("10-15\t\t\t1500");
-        System.out.println("16-21\t\t\t2000");
-        System.out.println("Above 21\t\t2500");
-    }
-
-    public void item5() throws IOException, InterruptedException
+    static void problemDesc()
     {
         System.out.println("\nDescription of the problem: ");
         System.out.println("Create a menu type program that asks for student name,");
@@ -50,10 +29,29 @@ public class process_long1 extends processes
         System.out.println("*First option will do the inputs and computations.");
         System.out.println("*Second option will display the information or the output needed, \nwill prompt a no enrollment information if there is no enrollee yet.");
         System.out.println("*Third option will prompt a successful print and will reassign the variables to their default values, \nand will prompt a no data found if no enrollee yet.");
-        
-        obj.pause();
-        obj.clearScreen();
-        
+
+    }
+
+    static void ratePerUnitChart()
+    {
+        System.out.println("Year Code\tYear Name\tRate per unit");
+        System.out.println("1\t\tFreshman\t400");
+        System.out.println("2\t\tSophomore\t350");
+        System.out.println("3\t\tJunior\t\t300");
+        System.out.println("4 and 5\t\tSenior\t\t250");
+    }
+
+    static void downPaymentChart()
+    {
+        System.out.println("Number of units\t\tDown Payment");
+        System.out.println("1-9\t\t\t1000");
+        System.out.println("10-15\t\t\t1500");
+        System.out.println("16-21\t\t\t2000");
+        System.out.println("Above 21\t\t2500");
+    }
+
+    public static void main(String args[]) throws IOException, InterruptedException
+    {
         // Inputs
         String studentName = "";
         int yearCode = 0, units = 0;
@@ -72,10 +70,10 @@ public class process_long1 extends processes
         double downPayment[] = {1000, 1500, 2000, 2500};
         double chosenRPU = 0, chosenDP = 0;
         double tuitionFee = 0, balance = 0;
-        
-        while(!choice.equals("4"))
+
+        while(!menuChoice.equals("4"))
         {
-            
+
             // To be displayed in the menu
             if(enrolled == true)
             {
@@ -89,7 +87,7 @@ public class process_long1 extends processes
             
             obj.clearScreen();
 
-            System.out.println("Java Activity 4, Item 5 Menu\n");
+            System.out.println("Java Midterms: Set A, Number 1\n");
 
             System.out.println("Current Enrollee: " + studentName + "\n");
 
@@ -125,14 +123,14 @@ public class process_long1 extends processes
 
                         obj.clearScreen();
                         System.out.println("Name: " + studentName + "\n");
-                        objI5.item5_inputGuideA();
+                        downPaymentChart();
                         System.out.print("\nEnter Year Code: ");
                         yearCode = Integer.parseInt(sc.nextLine());
 
                         obj.clearScreen();
                         System.out.println("Name: " + studentName);
                         System.out.println("Year Code: " + yearCode + "\n");
-                        objI5.item5_inputGuideB();
+                        ratePerUnitChart();
                         System.out.print("\nEnter number of units: ");
                         units = Integer.parseInt(sc.nextLine());
                     
@@ -141,7 +139,7 @@ public class process_long1 extends processes
                             obj.clearScreen();
                             System.out.println("\nSorry, the year code you have provided is not valid.");
                             System.out.println("Please refer to this table: ");
-                            objI5.item5_inputGuideA();
+                            ratePerUnitChart();
 
                             System.out.print("\nEnter a VALID year code: ");
                             yearCode = Integer.parseInt(sc.nextLine());
@@ -153,7 +151,7 @@ public class process_long1 extends processes
                             obj.clearScreen();
                             System.out.println("\nSorry, the number of units you have provided is not valid.");
                             System.out.println("Please refer to this table: ");
-                            objI5.item5_inputGuideB();
+                            downPaymentChart();
 
                             System.out.print("\nPlease enter a VALID number of units: ");
                             units = Integer.parseInt(sc.nextLine());
@@ -291,7 +289,10 @@ public class process_long1 extends processes
                     System.out.println("\nInvalid Input.");
                     obj.pause();
             }
+
         }
-        
+            
+            
     }
+    
 }

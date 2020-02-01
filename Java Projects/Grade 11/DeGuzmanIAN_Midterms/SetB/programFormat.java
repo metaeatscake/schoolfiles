@@ -71,14 +71,10 @@ public class programFormat
             "no",
             "nope"
         };
-        int accExSize = acceptedExit.length;
 
-        for(int i= accExSize -1; i >= 0 || valid == true; i--)
+        if(Arrays.asList(acceptedExit).contains(input))
         {
-            if(input.equals(acceptedExit[i]))
-            {
-                valid = true;
-            }
+            valid = true;
         }
 
         return valid;

@@ -87,7 +87,8 @@ class TuitionFeeBalance extends programFormat
             
             obj.clearScreen();
 
-            System.out.println("Java Midterms: Set A, Number 1\n");
+            System.out.println("--(Java Midterms: Set A, Number 1)--");
+            System.out.println("Student Tuition Fee and Balance Calculator\n");
 
             System.out.println("Current Enrollee: " + studentName + "\n");
 

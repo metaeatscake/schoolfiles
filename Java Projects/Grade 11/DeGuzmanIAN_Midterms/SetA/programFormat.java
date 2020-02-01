@@ -62,15 +62,4 @@ public class programFormat
         return Double.parseDouble(sc.nextLine());
     }
 
-    public double inputPassD(double receiver[], int arrayIndex)
-    {
-        receiver[arrayIndex] = doubleInput();
-        return receiver[arrayIndex];
-    }
-
-    public int inputPassI(int receiver[], int arrayIndex)
-    {
-        receiver[arrayIndex] = intInput();
-        return receiver[arrayIndex];
-    }
 }

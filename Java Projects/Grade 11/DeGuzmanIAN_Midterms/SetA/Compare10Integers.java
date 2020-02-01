@@ -3,19 +3,68 @@ import java.io.*;
 
 class Compare10Integers extends programFormat
 {
-    static void inputLoop(int array[], int arraySize)
+    public static void main(String args[])
     {
-        obj.arraySize1 = 10;
-        for(int i = 0; i < arraySize; i++)
+        // Change this to control amount of integers to compare.
+        arraySize1 = 10;
+        
+        while(!menuChoice.equals("2"))
         {
-            System.out.println("Enter a value for num[" + i + "]: ");
-            obj.inputPassI(array[].class, i);
-        }
+            System.out.println("\n--(Java Midterms: Set A, Number 2)--");
+            System.out.println("Highest and Lowest in " + arraySize1 + " Integer inputs");
+            System.out.println("[1] Input");
+            System.out.println("[2] Exit");
 
-        // Testing: Print all data.
-        for(int i2 = 0; i2 < arraySize; i2++)
-        {
-            System.out.println(array[i]);
+            System.out.print("\nEnter Choice: ");
+            menuChoice = sc.nextLine();
+            System.out.println("\n");
+
+            switch(menuChoice)
+            {
+                case "1":
+
+                    // Input integers, put them in an array
+                    for(int i = 0; i < arrayInt.length; i++)
+                    {
+                        System.out.print("Enter a number for num [" + (i+1) + "]: ");
+                        intNum1 = obj.intInput();
+                        arrayInt[i] = intNum1;
+                        intNum1 = 0;
+                    }
+
+                    // Sort the array (I just searched 'how to sort an array')
+                    int temp;
+                    for (int i = 1; i < arrayInt.length; i++) 
+                    {
+                        for (int j = i; j > 0; j--) 
+                        {
+                            if (arrayInt[j] < arrayInt[j - 1]) 
+                            {
+                                temp = arrayInt[j];
+                                arrayInt[j] = arrayInt[j - 1];
+                                arrayInt[j - 1] = temp;
+                            }
+                        }
+                    }
+
+                    // Output the sorted array
+                    System.out.print("\nSorted Input: ");
+                    for(int i = 0; i < arrayInt.length; i++)
+                    {
+                        System.out.print(arrayInt[i] + ", ");
+                    }
+
+                    // Output the lowest and highest
+                    System.out.println("\nLowest: " + arrayInt[0]);
+                    System.out.println("Highest: " + arrayInt[arraySize-1]);
+
+                    obj.pause();
+
+                break;
+
+                case "2": obj.goodbye(); break;
+                default: obj.invalidInput();
+            }
         }
     }
 }

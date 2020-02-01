@@ -1,5 +1,4 @@
 import java.io.*;
-import Utils;
 
 class TuitionFeeBalance extends programFormat
 {
@@ -71,7 +70,7 @@ class TuitionFeeBalance extends programFormat
         double chosenRPU = 0, chosenDP = 0;
         double tuitionFee = 0, balance = 0;
 
-        while(!menuChoice.equals("4"))
+        while(!choice.equals("4"))
         {
 
             // To be displayed in the menu

@@ -26,7 +26,7 @@ public class ConsecutiveSums extends programFormat
 
                     if(doubleNum1 > doubleNum2)
                     {
-                        for(int i = doubleNum1; i > doubleNum2; i--)
+                        for(double i = doubleNum1; i >= doubleNum2; i--)
                         {
                             sum += i;
                         }
@@ -34,7 +34,7 @@ public class ConsecutiveSums extends programFormat
 
                     else if(doubleNum1 < doubleNum2)
                     {
-                        for(int i = doubleNum2; i > doubleNum1; i--)
+                        for(double i = doubleNum2; i >= doubleNum1; i--)
                         {
                             sum += i;
                         }

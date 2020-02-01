@@ -8,8 +8,8 @@ public class Factorial extends programFormat
         while(!menuChoice.equals("2"))
         {
             double factorial = 1;
+            double holder = 0;
 
-            obj.clearScreen();
             System.out.println("\n--(Java Midterms: Set A, Number 3)--");
             System.out.println("Factorial Calculator");
             System.out.println("[1] Input");
@@ -23,10 +23,21 @@ public class Factorial extends programFormat
                 case "1":
                     System.out.print("\nEnter a number: ");
                     doubleNum1 = obj.doubleInput();
-
-                    for(int i = doubleNum1; i > 0; i--)
+                    
+                    holder = Math.abs(doubleNum1);
+                    for(double i = holder; i > 0; i--)
                     {
                         factorial *= i;
+                    }
+                    
+                    // If the input is positive, do nothing.
+                    // For negatives, the process is the same but the output is changed.
+                    // If the input is odd, the factorial output is negative.
+                    // If the input is even, the factorial output is positive.
+                    
+                    if(doubleNum1 < 0 && doubleNum1 % 2 != 0)
+                    {
+                        factorial *= -1;
                     }
 
                     System.out.println("\nAnswer: " + factorial);

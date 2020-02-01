@@ -3,10 +3,11 @@ import java.io.*;
 
 class Compare10Integers extends programFormat
 {
-    public static void main(String args[])
+    public static void main(String args[]) throws IOException
     {
         // Change this to control amount of integers to compare.
         arraySize1 = 10;
+        int arrayInt[] = new int[arraySize1];
         
         while(!menuChoice.equals("2"))
         {
@@ -51,12 +52,20 @@ class Compare10Integers extends programFormat
                     System.out.print("\nSorted Input: ");
                     for(int i = 0; i < arrayInt.length; i++)
                     {
-                        System.out.print(arrayInt[i] + ", ");
+                        if(i < arrayInt.length - 1)
+                        {
+                            System.out.print(arrayInt[i] + ", ");
+                        }
+
+                        else
+                        {
+                            System.out.print(arrayInt[i] + "\n");
+                        }
                     }
 
                     // Output the lowest and highest
                     System.out.println("\nLowest: " + arrayInt[0]);
-                    System.out.println("Highest: " + arrayInt[arraySize-1]);
+                    System.out.println("Highest: " + arrayInt[arraySize1-1]);
 
                     obj.pause();
 

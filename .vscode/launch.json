@@ -1,0 +1,49 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": 
+    [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - ATM",
+            "request": "launch",
+            "mainClass": "ATM",
+            "projectName": "schoolfiles_7eb0c3f7"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)",
+            "request": "launch",
+            "mainClass": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Activity1<schoolfiles_7eb0c3f7>",
+            "request": "launch",
+            "mainClass": "Activity1.Activity1",
+            "projectName": "schoolfiles_7eb0c3f7"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Activity2<schoolfiles_7eb0c3f7>",
+            "request": "launch",
+            "mainClass": "Activity2.Activity2",
+            "projectName": "schoolfiles_7eb0c3f7"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-mainProgram<schoolfiles_7eb0c3f7>",
+            "request": "launch",
+            "mainClass": "Activity3.mainProgram",
+            "projectName": "schoolfiles_7eb0c3f7"
+        }
+    ]
+}

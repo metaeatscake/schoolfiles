@@ -60,4 +60,27 @@ public class programFormat
     {
         return dtf.format(now);
     }
+
+    public boolean yesNoMenu(String input)
+    {
+        boolean valid = false;
+
+        String acceptedExit[] = 
+        {
+            "n",
+            "no",
+            "nope"
+        };
+        int accExSize = acceptedExit.length;
+
+        for(int i= accExSize -1; i >= 0 || valid == true; i--)
+        {
+            if(input.equals(acceptedExit[i]))
+            {
+                valid = true;
+            }
+        }
+
+        return valid;
+    }
 }

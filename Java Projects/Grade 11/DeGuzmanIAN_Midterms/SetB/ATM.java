@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Arrays;
 
 public class ATM extends programFormat
 {
@@ -11,6 +12,7 @@ public class ATM extends programFormat
         500,
         1000
     };
+    static int accWithSize = acceptedWithdraw.length;
 
     // Edit this to change acceptable deposit amounts
     static double acceptedDeposit[] = 
@@ -21,6 +23,7 @@ public class ATM extends programFormat
         5000,
         10000
     };
+    static int accDepSize = acceptedWithdraw.length;
 
     static boolean validTransaction(String transactionType, double input, double balance)
     {
@@ -31,7 +34,7 @@ public class ATM extends programFormat
         {
             // Loop until either the input matches with any of the accepted deposits,
             // or until it goes through all of them and remains false.
-            for(int i = 0; i < acceptedDeposit.length || valid == true; i++)
+            for(int i = accDepSize -1; i >= 0 || valid == true; i--)
             {
                 if(input == acceptedDeposit[i])
                 {
@@ -44,7 +47,7 @@ public class ATM extends programFormat
         // Second condition added to avoid redundant logging.
         else if(transactionType.equals("Withdrawal") && validWithdrawal(input, balance) == true)
         {
-            for(int i = 0; i < acceptedWithdraw.length || valid == true; i++)
+            for(int i = accWithSize -1; i >= 0 || valid == true; i--)
             {
                 if(input == acceptedWithdraw[i])
                 {
@@ -91,8 +94,9 @@ public class ATM extends programFormat
             "e",
             "exit"
         };
+        int accExSize = acceptedExits.length;
 
-        for(int i = 0; i < acceptedExits.length || valid == true; i++)
+        for(int i = (accExSize-1); i >= 0 || valid == true; i--)
         {
             if(menuInput.equals(acceptedExits[i]))
             {
@@ -103,7 +107,7 @@ public class ATM extends programFormat
         return valid;
     }
 
-    public static void main(String args[]) throws IOException, InterruptedException
+    public static void main(String args[]) throws IOException, InterruptedException, NullPointerException
     {
         // Starting balance for this account
         double balance = 10000;
@@ -113,9 +117,9 @@ public class ATM extends programFormat
         String transactionTime[] = new String[logLimit];
         String transactionType[] = new String[logLimit];
         String transactionValid[] = new String[logLimit];
-        String inputAmount[] = new String[logLimit];
-        String preBalance[] = new String[logLimit];
-        String newBalance[] = new String[logLimit];
+        double inputAmount[] = new double[logLimit];
+        double preBalance[] = new double[logLimit];
+        double newBalance[] = new double[logLimit];
         int ctr = 0;
 
         while(validExit(menuChoice.toLowerCase()) == false)
@@ -244,12 +248,183 @@ public class ATM extends programFormat
 
                 case "2": case "d": case "deposit":
                     obj.clearScreen();
-                    
+
+                    System.out.println("--Deposit Menu--\n");
+                    System.out.println("Supported Amounts:");
+                    System.out.println(Arrays.toString(acceptedDeposit));
+
+                    System.out.print("\nEnter amount to deposit: ");
+                    input = obj.doubleInput();
+
+                    System.out.println("\n");
+
+                    // Valid input goes here
+                    if(validTransaction("Deposit", input, balance) == true)
+                    {
+
+                        System.out.println("Transaction Accepted.");
+                        System.out.println(input + "has been added to your balance.");
+
+                        transactionTime[ctr] = obj.currentTime();
+                        transactionType[ctr] = "Deposit";
+                        transactionValid[ctr] = "Valid";
+                        inputAmount[ctr] = input;
+                        preBalance[ctr] = balance;
+                        newBalance[ctr] = balance + input;
+                        ctr++;
+
+                        balance += input;
+
+                        obj.pause();
+
+                    }
+
+                    // Negatives
+                    else if(input < 0)
+                    {
+                        System.out.println("Transaction Denied.");
+                        System.out.println("You tried to deposit a negative amount.");
+                        System.out.println("No amount was added to your balance");
+
+                        transactionTime[ctr] = obj.currentTime();
+                        transactionType[ctr] = "Deposit";
+                        transactionValid[ctr] = "Invalid (Negative Input)";
+                        inputAmount[ctr] = input;
+                        preBalance[ctr] = balance;
+                        newBalance[ctr] = balance;
+                        ctr++;
+
+                        obj.pause();
+                    }
+
+                    // Zero
+                    else if(input == 0)
+                    {
+                        System.out.println("Transaction Denied.");
+                        System.out.println("You did something weird.");
+                        System.out.println("No amount was added to your balance");
+
+                        transactionTime[ctr] = obj.currentTime();
+                        transactionType[ctr] = "Deposit";
+                        transactionValid[ctr] = "Invalid (Depositing nothing)";
+                        inputAmount[ctr] = input;
+                        preBalance[ctr] = balance;
+                        newBalance[ctr] = balance;
+                        ctr++;
+
+                        obj.pause();
+                    }
+
+                    // Unsupported amount
+                    else if(validTransaction("Deposit", input, balance) == false)
+                    {
+                        System.out.println("Transaction Denied.");
+                        System.out.println("You did not input a supported amount");
+                        System.out.println("No amount was added to your balance");
+
+                        transactionTime[ctr] = obj.currentTime();
+                        transactionType[ctr] = "Deposit";
+                        transactionValid[ctr] = "Invalid (Unsupported Amount)";
+                        inputAmount[ctr] = input;
+                        preBalance[ctr] = balance;
+                        newBalance[ctr] = balance;
+                        ctr++;
+
+                        obj.pause();
+                    }
+
+                    // Unaccounted Errors
+                    else
+                    {
+                        System.out.println("Transaction Denied.");
+                        System.out.println("You did something weird.");
+                        System.out.println("No amount was added to your balance");
+
+                        transactionTime[ctr] = obj.currentTime();
+                        transactionType[ctr] = "Withdrawal";
+                        transactionValid[ctr] = "Invalid (Unknown Error)";
+                        inputAmount[ctr] = input;
+                        preBalance[ctr] = balance;
+                        newBalance[ctr] = balance;
+                        ctr++;
+
+                        obj.pause();
+                    }
+
 
                 break;
 
                 case "3": case "v": case "view" : case "view balance": case "bal":
+                        
+                    while(obj.yesNoMenu(subMenu) == false)
+                    {
+                        obj.clearScreen();
+                        
+                        System.out.println("--Balance--");
+                        System.out.println("\nCurrent Balance: " + balance);
 
+                        System.out.println("\nLatest Transaction: ");
+                        System.out.println("---Log [" + ctr + "]---");
+                        System.out.println("Time: " + transactionTime[ctr]);
+                        System.out.println("Transaction: " + transactionType[ctr]);
+                        System.out.println("Valid?: " + transactionValid[ctr]);
+                        System.out.println("Inputted Amount: " + inputAmount[ctr]);
+                        System.out.println("Previous Balance: " + preBalance[ctr]);
+                        System.out.println("New Balance: " + newBalance[ctr]);
+
+                    
+                        System.out.println("\nWould you like to see all of the logs?");
+                        System.out.print("(yes/no): ");
+                        subMenu = sc.nextLine();
+
+                        switch(subMenu.toLowerCase())
+                        {
+                            case "y": case "yes":
+
+                                //obj.clearScreen();
+
+                                // NO LOGS TO OUTPUT
+                                if(transactionType[0].equals(""))
+                                {
+                                    System.out.println("\nSorry, there's no logs yet.");
+                                }
+
+                                // There's at least one log.
+                                else
+                                {
+                                    obj.clearScreen();
+                                    // descending output:
+                                    //  int i = logLimit - 1; i >= 0; i--
+                                    // ascending output:
+                                    //  int i = 0; i < logLimit; i++
+                                    for(int i = logLimit - 1; i >= 0; i--)
+                                    {
+                                        // Show data with actual values
+                                        if(!transactionType[i].equals(""))
+                                        {
+                                            System.out.println("\nLog ["+i+"]");
+                                            System.out.println("Time: " + transactionTime[i]);
+                                            System.out.println("Transaction: " + transactionType[i]);
+                                            System.out.println("Valid?: " + transactionValid[i]);
+                                            System.out.println("Inputted Amount: " + inputAmount[i]);
+                                            System.out.println("Previous Balance: " + preBalance[i]);
+                                            System.out.println("New Balance: " + newBalance[i]);
+                                        }   
+                                    }
+                                }
+
+                            break;
+
+                            case "n": case "no":
+                                System.out.println("\nReturning to main menu...");
+                                obj.pause();
+                            break;
+
+                            default: 
+                                System.out.println("\nYes/No only please.");
+                                obj.pause();
+                        }
+                    }
                 break;
 
                 case "4": case "e" : case "exit":

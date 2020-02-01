@@ -5,7 +5,7 @@ public class ATM extends programFormat
 {
 
     // Edit this to change acceptable withdrawal amounts
-    static double acceptedWithdraw[] = 
+    static int acceptedWithdraw[] = 
     {
         200,
         300,
@@ -15,7 +15,7 @@ public class ATM extends programFormat
     
 
     // Edit this to change acceptable deposit amounts
-    static double acceptedDeposit[] = 
+    static int acceptedDeposit[] = 
     {
         500,
         1000,
@@ -24,8 +24,12 @@ public class ATM extends programFormat
         10000
     };
     
+    // Final stuff to do
+    // Create a better boolean method to handle Withdrawal validity
+    // Fix the if-else of deposit, make it simpler.
+    // Figure out how to make the log work.
 
-    static boolean validTransaction(String transactionType, double input, double balance)
+    static boolean validTransaction(String transactionType, int input, double balance)
     {
         boolean valid = false;
 
@@ -54,7 +58,7 @@ public class ATM extends programFormat
     }
 
     // Check for withdrawals exceeding limit
-    static boolean validWithdrawal(double input,double balance)
+    static boolean validWithdrawal(int input,double balance)
     {
         boolean valid = false;
 
@@ -109,10 +113,22 @@ public class ATM extends programFormat
         double newBalance[] = new double[logLimit];
         int ctr = 0;
 
+        // Un-nullification of array
+        // Arrays.fill(array, value); would have done the same.
+        for(int i = 0; i < logLimit; i++)
+        {
+            transactionTime[i] = " ";
+            transactionType[i] = " ";
+            transactionValid[i] = " ";
+            inputAmount[i] = 0;
+            preBalance[i] = 0;
+            newBalance[i] = 0;
+        }
+
         while(validExit(menuChoice.toLowerCase()) == false)
         {
             obj.clearScreen();
-            double input = 0;
+            int input = 0;
 
             System.out.println("--(Midterms: Java Set B, Number 1)--");
             System.out.println("ATM Machine (With logging instead of invalid loop)");
@@ -315,7 +331,7 @@ public class ATM extends programFormat
                         System.out.println("\nCurrent Balance: " + balance);
 
                         System.out.println("\nLatest Transaction: ");
-                        System.out.println("---Log [" + ctr + "]---");
+                        System.out.println("---Log [" + (ctr-1) + "]---");
                         System.out.println("Time: " + transactionTime[ctr]);
                         System.out.println("Transaction: " + transactionType[ctr]);
                         System.out.println("Valid?: " + transactionValid[ctr]);
@@ -335,7 +351,7 @@ public class ATM extends programFormat
                                 //obj.clearScreen();
 
                                 // NO LOGS TO OUTPUT
-                                if(transactionType[0].equals(""))
+                                if(transactionType[0].equals(" "))
                                 {
                                     System.out.println("\nSorry, there's no logs yet.");
                                 }
@@ -351,7 +367,7 @@ public class ATM extends programFormat
                                     for(int i = logLimit - 1; i >= 0; i--)
                                     {
                                         // Show data with actual values
-                                        if(!transactionType[i].equals(""))
+                                        if(!transactionType[i].equals(" "))
                                         {
                                             System.out.println("\nLog ["+i+"]");
                                             System.out.println("Time: " + transactionTime[i]);
@@ -362,6 +378,8 @@ public class ATM extends programFormat
                                             System.out.println("New Balance: " + newBalance[i]);
                                         }   
                                     }
+
+                                    obj.pause();
                                 }
 
                             break;
@@ -382,7 +400,7 @@ public class ATM extends programFormat
                     obj.goodbye();
                 break;
 
-                default: obj.invalidInput();
+                default: obj.invalidInput(); obj.pause();
             }
         }
 

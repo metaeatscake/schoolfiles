@@ -61,22 +61,4 @@ public class programFormat
         return dtf.format(now);
     }
 
-    public boolean yesNoMenu(String input)
-    {
-        boolean valid = false;
-
-        String acceptedExit[] = 
-        {
-            "n",
-            "no",
-            "nope"
-        };
-
-        if(Arrays.asList(acceptedExit).contains(input))
-        {
-            valid = true;
-        }
-
-        return valid;
-    }
 }

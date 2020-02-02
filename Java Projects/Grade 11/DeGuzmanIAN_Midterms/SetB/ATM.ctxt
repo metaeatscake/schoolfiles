@@ -1,11 +1,9 @@
 #BlueJ class context
 comment0.target=ATM
-comment1.params=transactionType\ input\ balance
-comment1.target=boolean\ validTransaction(java.lang.String,\ double,\ double)
+comment1.params=input\ balance
+comment1.target=int[]\ validWithArray(double,\ double)
 comment2.params=input\ balance
-comment2.target=boolean\ validWithdrawal(double,\ double)
-comment3.params=menuInput
-comment3.target=boolean\ validExit(java.lang.String)
-comment4.params=args
-comment4.target=void\ main(java.lang.String[])
-numComments=5
+comment2.target=int[]\ validDepArray(double,\ double)
+comment3.params=args
+comment3.target=void\ main(java.lang.String[])
+numComments=4

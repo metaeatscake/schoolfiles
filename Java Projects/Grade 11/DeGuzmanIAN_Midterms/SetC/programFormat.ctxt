@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=programFormat
+comment1.params=
+comment1.target=void\ clearScreen()
+comment2.params=
+comment2.target=void\ pause()
+comment3.params=
+comment3.target=void\ invalidInput()
+comment4.params=
+comment4.target=void\ goodbye()
+comment5.params=
+comment5.target=int\ intInput()
+numComments=6

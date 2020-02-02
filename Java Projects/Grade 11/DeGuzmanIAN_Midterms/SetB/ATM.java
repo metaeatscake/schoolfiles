@@ -25,54 +25,78 @@ public class ATM extends programFormat
     };
     
     // Final stuff to do
-    // Create a better boolean method to handle Withdrawal validity
-    // Fix the if-else of deposit, make it simpler.
     // Figure out how to make the log work.
 
-    static boolean validTransaction(String transactionType, int input, double balance)
+    static boolean[] validWithArray(int input, double balance)
     {
-        boolean valid = false;
-
-        // Boolean check for Deposits go here.
-        if(transactionType.equals("Deposit"))
+        boolean condition1 = false;
+        boolean condition2 = false;
+        boolean condition3 = false;
+        boolean condition4 = false;
+ 
+        // Negative check: Input has to be positive
+        if(input > 0)
         {
-            if(Arrays.asList(acceptedDeposit).contains(input))
-            {
-                valid = true;
-            }
+            condition1 = true;
         }
 
-        // Boolean check for Withdrawals go here.
-        // Second condition added to avoid redundant logging.
-        else if(transactionType.equals("Withdrawal") && validWithdrawal(input, balance) == true)
+        // Zero check: Input cannot be zero
+        if(input != 0)
         {
-            
-            if(Arrays.asList(acceptedWithdraw).contains(input))
-            {
-                valid = true;
-            }
-            
+            condition2 = true;
         }
 
-        return valid;
+        // Exceeding limit check: Input cannot exceed balance
+        if(input <= balance)
+        {
+            condition3 = true;
+        }
+
+        // Acceptable amount check: Input has to be a printable amount.
+        if(Arrays.asList(acceptedWithdraw).contains(input))
+        {
+            condition4 = true;
+        }
+
+        // In the input process, check if any of these contain a false.
+        // if there is one false, it is invalid.
+        return new boolean[] 
+        {
+            condition1, 
+            condition2, 
+            condition3,
+            condition4
+        };
     }
 
-    // Check for withdrawals exceeding limit
-    static boolean validWithdrawal(int input,double balance)
+    // Same as the method above.
+    static boolean[] validDepArray(int input, double balance)
     {
-        boolean valid = false;
+        boolean condition1 = false;
+        boolean condition2 = false;
+        boolean condition3 = false;
 
-        if(input > balance && input > 0)
+        if(input > 0)
         {
-            valid = false;
+            condition1 = true;
         }
 
-        else
+        if(input != 0)
         {
-            valid = true;
+            condition2 = true;
         }
 
-        return valid;
+        if(Arrays.asList(acceptedDeposit).contains(input))
+        {
+            condition3 = true;
+        }
+
+        return new boolean[]
+        {
+            condition1,
+            condition2,
+            condition3
+        };
     }
 
     // A test for multiple program terminating inputs.
@@ -108,7 +132,7 @@ public class ATM extends programFormat
         String transactionTime[] = new String[logLimit];
         String transactionType[] = new String[logLimit];
         String transactionValid[] = new String[logLimit];
-        double inputAmount[] = new double[logLimit];
+        int inputAmount[] = new int[logLimit];
         double preBalance[] = new double[logLimit];
         double newBalance[] = new double[logLimit];
         int ctr = 0;
@@ -157,16 +181,23 @@ public class ATM extends programFormat
 
                     System.out.println("\n");
 
-                    // Negatives or Exceeding limit.
-                    if(validTransaction("Withdrawal", input, balance) == false)
+                    // Insert the method to a local array variable.
+                    boolean withdrawArray[] = validWithArray(input, balance);
+
+                    // If there is one false in the array, the input is invalid.
+                    if(Arrays.asList(withdrawArray).contains(false))
                     {
                         System.out.println("Transaction Denied.");
-                        System.out.println("No amount was deducted from your balance.");
-                        System.out.println("Please enter an amount that this ATM can output.");
+                        System.out.println("No amount was deducted from your balance");
+                        System.out.println("Possible reasons why the input was invalid:");
+                        System.out.println("--Entering a negative value");
+                        System.out.println("--Entering only 0");
+                        System.out.println("--Entering an amount exceeding your balance");
+                        System.out.println("--Entering an amount unsupported by the ATM");
 
                         transactionTime[ctr] = obj.currentTime();
                         transactionType[ctr] = "Withdrawal";
-                        transactionValid[ctr] = "Invalid (Unsupported Amount)";
+                        transactionValid[ctr] = "Invalid";
                         inputAmount[ctr] = input;
                         preBalance[ctr] = balance;
                         newBalance[ctr] = balance;
@@ -175,11 +206,11 @@ public class ATM extends programFormat
                         obj.pause();
                     }
 
-                    // Valid
-                    else if(validTransaction("Withdrawal", input, balance) == true)
+                    // If it does not contain a false, it is valid.
+                    else
                     {
                         System.out.println("Transaction Accepted.");
-                        System.out.println(input +" was deducted from your balance");
+                        System.out.println(input +" was deducted from your balance.");
 
                         transactionTime[ctr] = obj.currentTime();
                         transactionType[ctr] = "Withdrawal";
@@ -190,24 +221,6 @@ public class ATM extends programFormat
                         ctr++;
 
                         balance -= input;
-
-                        obj.pause();
-                    }
-
-                    // For unaccounted errors.
-                    else
-                    {
-                        System.out.println("Transaction Denied.");
-                        System.out.println("You did something weird.");
-                        System.out.println("No amount was deducted from your balance");
-
-                        transactionTime[ctr] = obj.currentTime();
-                        transactionType[ctr] = "Withdrawal";
-                        transactionValid[ctr] = "Invalid (Unknown Error)";
-                        inputAmount[ctr] = input;
-                        preBalance[ctr] = balance;
-                        newBalance[ctr] = balance;
-                        ctr++;
 
                         obj.pause();
                     }
@@ -225,12 +238,32 @@ public class ATM extends programFormat
 
                     System.out.println("\n");
 
-                    // Valid input goes here
-                    if(validTransaction("Deposit", input, balance) == true)
-                    {
+                    boolean depositArray[] = validDepArray(input, balance);
 
+                    if(Arrays.asList(depositArray).contains(false))
+                    {
+                        System.out.println("Transaction Denied.");
+                        System.out.println("No amount has been added to your balance.");
+                        System.out.println("Possible reasons why your input was invalid:");
+                        System.out.println("--Entering a negative input");
+                        System.out.println("--Entering only 0");
+                        System.out.println("--Entering an amount unsupported by the ATM");
+
+                        transactionTime[ctr] = obj.currentTime();
+                        transactionType[ctr] = "Deposit";
+                        transactionValid[ctr] = "Invalid";
+                        inputAmount[ctr] = input;
+                        preBalance[ctr] = balance;
+                        newBalance[ctr] = balance + input;
+                        ctr++;
+
+                        obj.pause();
+                    }
+
+                    else
+                    {
                         System.out.println("Transaction Accepted.");
-                        System.out.println(input + "has been added to your balance.");
+                        System.out.println(input + " has been added to your balance.");
 
                         transactionTime[ctr] = obj.currentTime();
                         transactionType[ctr] = "Deposit";
@@ -241,79 +274,6 @@ public class ATM extends programFormat
                         ctr++;
 
                         balance += input;
-
-                        obj.pause();
-
-                    }
-
-                    // Negatives
-                    else if(input < 0)
-                    {
-                        System.out.println("Transaction Denied.");
-                        System.out.println("You tried to deposit a negative amount.");
-                        System.out.println("No amount was added to your balance");
-
-                        transactionTime[ctr] = obj.currentTime();
-                        transactionType[ctr] = "Deposit";
-                        transactionValid[ctr] = "Invalid (Negative Input)";
-                        inputAmount[ctr] = input;
-                        preBalance[ctr] = balance;
-                        newBalance[ctr] = balance;
-                        ctr++;
-
-                        obj.pause();
-                    }
-
-                    // Zero
-                    else if(input == 0)
-                    {
-                        System.out.println("Transaction Denied.");
-                        System.out.println("You did something weird.");
-                        System.out.println("No amount was added to your balance");
-
-                        transactionTime[ctr] = obj.currentTime();
-                        transactionType[ctr] = "Deposit";
-                        transactionValid[ctr] = "Invalid (Depositing nothing)";
-                        inputAmount[ctr] = input;
-                        preBalance[ctr] = balance;
-                        newBalance[ctr] = balance;
-                        ctr++;
-
-                        obj.pause();
-                    }
-
-                    // Unsupported amount
-                    else if(validTransaction("Deposit", input, balance) == false)
-                    {
-                        System.out.println("Transaction Denied.");
-                        System.out.println("You did not input a supported amount");
-                        System.out.println("No amount was added to your balance");
-
-                        transactionTime[ctr] = obj.currentTime();
-                        transactionType[ctr] = "Deposit";
-                        transactionValid[ctr] = "Invalid (Unsupported Amount)";
-                        inputAmount[ctr] = input;
-                        preBalance[ctr] = balance;
-                        newBalance[ctr] = balance;
-                        ctr++;
-
-                        obj.pause();
-                    }
-
-                    // Unaccounted Errors
-                    else
-                    {
-                        System.out.println("Transaction Denied.");
-                        System.out.println("You did something weird.");
-                        System.out.println("No amount was added to your balance");
-
-                        transactionTime[ctr] = obj.currentTime();
-                        transactionType[ctr] = "Withdrawal";
-                        transactionValid[ctr] = "Invalid (Unknown Error)";
-                        inputAmount[ctr] = input;
-                        preBalance[ctr] = balance;
-                        newBalance[ctr] = balance;
-                        ctr++;
 
                         obj.pause();
                     }

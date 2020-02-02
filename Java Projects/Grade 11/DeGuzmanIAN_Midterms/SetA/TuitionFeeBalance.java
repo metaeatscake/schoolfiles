@@ -123,14 +123,14 @@ class TuitionFeeBalance extends programFormat
 
                         obj.clearScreen();
                         System.out.println("Name: " + studentName + "\n");
-                        downPaymentChart();
+                        ratePerUnitChart();
                         System.out.print("\nEnter Year Code: ");
                         yearCode = Integer.parseInt(sc.nextLine());
 
                         obj.clearScreen();
                         System.out.println("Name: " + studentName);
                         System.out.println("Year Code: " + yearCode + "\n");
-                        ratePerUnitChart();
+                        downPaymentChart();
                         System.out.print("\nEnter number of units: ");
                         units = Integer.parseInt(sc.nextLine());
                     

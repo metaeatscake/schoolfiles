@@ -8,10 +8,10 @@ public class OrdinalNumber extends programFormat
 
         String convertedInput = Integer.toString(input);
         String lastNum = Character.toString(convertedInput.charAt(convertedInput.length()-1));
-        String firstNumTwoDigits = Character.toString(convertedInput.charAt(0));
+        String secondLastNum = Character.toString(convertedInput.charAt(convertedInput.length()-2));
 
-        // Handle 10 to 19
-        if(convertedInput.length() == 2 && firstNumTwoDigits.equals("1"))
+        // Handle 10 to 19.
+        if(secondLastNum.equals("1"))
         {
             convertedInput += "th";
         }

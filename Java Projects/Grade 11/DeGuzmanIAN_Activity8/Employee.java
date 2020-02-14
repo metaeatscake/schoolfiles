@@ -1,4 +1,3 @@
-import java.util.*;
 public class Employee
 {
     private int employeeId;
@@ -6,9 +5,9 @@ public class Employee
     private String employeeEmail;
     private double basicSalary;
     private int hoursWorked;
-    private double grossSalary;
+    //private double grossSalary;
     
-    public Employee(int employeedId, String employeeName, String employeeEmail,
+    public Employee(int employeeId, String employeeName, String employeeEmail,
         double basicSalary)
     {
         this.employeeId = employeeId;
@@ -17,7 +16,7 @@ public class Employee
         this.basicSalary = basicSalary;
     }
     
-    public void setHoursWorked(int hoursWorked)
+    public void setHours(int hoursWorked)
     {
         this.hoursWorked = hoursWorked;
     }
@@ -38,7 +37,7 @@ public class Employee
     {
         return this.basicSalary;
     }
-    public double getHoursWorked()
+    public int getHoursWorked()
     {
         return this.hoursWorked;
     }

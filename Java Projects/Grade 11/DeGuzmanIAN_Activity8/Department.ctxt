@@ -1,5 +1,11 @@
 #BlueJ class context
 comment0.target=Department
-comment1.params=
-comment1.target=Department()
-numComments=2
+comment1.params=departmentId\ departmentName\ departmentDesc
+comment1.target=Department(int,\ java.lang.String,\ java.lang.String)
+comment2.params=employee
+comment2.target=void\ setEmployee(Employee)
+comment3.params=
+comment3.target=void\ viewDepartmentDetails()
+comment4.params=
+comment4.target=void\ viewEmployeeDetails()
+numComments=5

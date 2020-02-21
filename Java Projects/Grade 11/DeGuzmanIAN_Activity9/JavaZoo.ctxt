@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=JavaZoo
+comment1.params=
+comment1.target=JavaZoo()
+comment2.params=
+comment2.target=java.lang.String\ getZooName()
+comment3.params=
+comment3.target=void\ printAll()
+comment4.params=args
+comment4.target=void\ main(java.lang.String[])
+numComments=5

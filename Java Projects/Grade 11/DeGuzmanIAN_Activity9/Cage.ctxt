@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.target=Cage
+comment1.params=
+comment1.target=Cage()
+comment10.params=covered
+comment10.target=void\ covered(boolean)
+comment11.params=
+comment11.target=boolean\ isClean()
+comment12.params=
+comment12.target=boolean\ isCovered()
+comment2.params=length\ width\ height\ clean\ covered
+comment2.target=Cage(int,\ int,\ int,\ boolean,\ boolean)
+comment3.params=length
+comment3.target=void\ setLength(int)
+comment4.params=width
+comment4.target=void\ setWidth(int)
+comment5.params=height
+comment5.target=void\ setHeight(int)
+comment6.params=
+comment6.target=int\ getLength()
+comment7.params=
+comment7.target=int\ getWidth()
+comment8.params=
+comment8.target=int\ getHeight()
+comment9.params=clean
+comment9.target=void\ cleaned(boolean)
+numComments=13

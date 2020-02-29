@@ -1,5 +1,5 @@
 import java.io.*;
-
+import java.util.*;
 public class Menu
 {
     private String loginMenuChoice;
@@ -7,6 +7,8 @@ public class Menu
     private String userMenuChoice;
     private String flightMenuChoice;
     private String paymentMenuChoice;
+
+    private Scanner scanner = new Scanner(System.in);
 
     public void setLoginMenuChoice(String loginMenuChoice)
     {
@@ -101,6 +103,14 @@ public class Menu
         System.out.println("Press Enter to Continue.");
         System.out.println("------------------------\n");
         System.in.read();
+    }
+    public String stringInput()
+    {
+        return scanner.nextLine();
+    }
+    public double doubleInput()
+    {
+        return Double.parseDouble(scanner.nextLine());
     }
 
 }

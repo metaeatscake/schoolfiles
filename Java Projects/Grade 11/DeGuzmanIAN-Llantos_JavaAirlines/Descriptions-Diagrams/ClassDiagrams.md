@@ -5,11 +5,12 @@ class Menu
     -adminMenuChoice : **String**
     -flightMenuChoice : **String**
     -paymentMenuChoice : **String**
+    
     --
     ..Mutators..
     +setLoginMenuChoice(loginMenuChoice : **String**) : void
-    +setAdminMenuChoice(adminMenuChoice : **String**) : void
-    +setFlightMenuChoice(flightMenuCHoice : **String**) : void
+    +setAdminMenuChoice(adminMenuChoice : ** String**) : void
+    +setFlightMenuChoice(flightMenuChoice : **String**) : void
     +setPaymentMenuChoice(paymentMenuChoice : **String**) : void
     ..Accessors..
     +getLoginMenuChoice() : **String**
@@ -24,22 +25,26 @@ class Menu
     ..Extra Custom Methods..
     +**clearScreen() : void**
     +**pause() : void**
+    +**scanner : Scanner(System.in)**
+    +**stringInput() : String**
+    +**doubleInput() : double**
 }
 
 class Payment
 {
     -account : Account
     -cash : double
+    -**flight : Flight**
     --
     ..Mutators..
     +setAccount(account : Account) : void
+    +**setFlight(flight : Flight) : void**
     +setCash(cash : double) : void
     ..Accessors..
     +getCash() : double
     ..Custom Methods..
     +creditCardPayment(cardNumber : String, month : String, year : String) : boolean
     +cashPayment(cash : double) : boolean
-
 }
 
 class Flight
@@ -58,7 +63,6 @@ class Flight
     +getFlightCode() : String
     +getFlightLocation() : String
     +getFlightPrice() : double
-
 }
 
 class CreditCard
@@ -75,7 +79,6 @@ class CreditCard
     +getCardNumber() : String
     +getMonth() : String
     +getYear() : String
-
 }
 
 class Account
@@ -118,13 +121,18 @@ class Validation
 {
     -loginCheck = false : boolean
     -flightCheck = false : boolean
+    -**attemptsCtr : int**
     --
     ..Mutators..
     +setLoginCheck(loginCheck : boolean) : void
     +setFlightCheck(flightCheck : boolean) : void
+    +**setAttempts(counter : int) : void**
     ..Accessors..
     +getLoginCheck() : boolean
     +getFlightCheck() : boolean
+    +**getAttempts() : int**
+    ..Extra Custom Methods..
+    +**resetAttempts() : void**
 }
 
 class Airlines
@@ -139,7 +147,12 @@ CreditCard <|-- Account
 Account <|-- Validation
 
 Account <|.. Payment
+Flight <|.. Account
 
-Menu <|..|> Airlines
+Menu <|.. Airlines
+Validation <|.. Airlines
+Payment <|.. Airlines
+Account <|.. Airlines
+Flight <|.. Airlines
 
 ```@enduml

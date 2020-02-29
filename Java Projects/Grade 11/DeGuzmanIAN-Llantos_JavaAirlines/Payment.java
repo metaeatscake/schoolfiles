@@ -1,11 +1,16 @@
 public class Payment
 {
     private Account account;
+    private Flight flight;
     private double cash;
 
     public void setAccount(Account account)
     {
         this.account = account;
+    }
+    public void setFlight(Flight flight)
+    {
+        this.flight = flight;
     }
     public void setCash(double cash)
     {
@@ -37,7 +42,7 @@ public class Payment
     {
         boolean condition;
 
-        if(cash >= account.getFlightPrice())
+        if(cash >= flight.getFlightPrice())
         {
             conditon = true;
         }

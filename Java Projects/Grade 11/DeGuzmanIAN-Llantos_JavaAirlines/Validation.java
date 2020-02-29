@@ -3,6 +3,8 @@ public class Validation extends Account
     private boolean loginCheck = false;
     private boolean flightCheck = false;
 
+    private int attemptsCtr;
+
     public void setLoginCheck(boolean loginCheck)
     {
         this.loginCheck = loginCheck;
@@ -10,6 +12,10 @@ public class Validation extends Account
     public void setFlightCheck(boolean flightCheck)
     {
         this.flightCheck = flightCheck;
+    }
+    public void setAttempts(int counter)
+    {
+        this.attemptsCtr = counter;
     }
 
     public boolean getLoginCheck()
@@ -20,4 +26,14 @@ public class Validation extends Account
     {
         return this.flightCheck;
     }
+    public int getAttempts()
+    {
+        return this.attemptsCtr;
+    }
+
+    public void resetAttempts()
+    {
+        this.attemptsCtr = 0;
+    }
+    
 }

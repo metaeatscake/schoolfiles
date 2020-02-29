@@ -150,17 +150,26 @@ public class extras
                 // Disable feeding twice.
                 if(zooanimal.isHungry() == true)
                 {
-                    // Animal could go hungry without a covered cage.
-                    if(cage.isCovered() == true)
+                    // Animal will not eat if cage is dirty
+                    if(cage.isClean() == false)
                     {
-                        zookeeper.uncoverCage();
-                        cage.covered(false);
+                        // Animal could go hungry without a covered cage.
+                        if(cage.isCovered() == true)
+                        {
+                            zookeeper.uncoverCage();
+                            cage.covered(false);
+                        }
+                        
+                        zookeeper.feedAnimal();
+                        zooanimal.eat();
+                        cage.cleaned(false);
+                        pause();
                     }
-                    
-                    zookeeper.feedAnimal();
-                    zooanimal.eat();
-                    
-                    pause();
+                    else
+                    {
+                        System.out.println("\nThe Cage is dirty.");
+                        System.out.println(zooanimal.getName() + " can't eat!");
+                    }
                 }
                 else
                 {

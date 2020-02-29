@@ -1,26 +1,29 @@
 ```@startuml
 class Menu
 {
-    -loginMenuChoice : <b>String</b>
-    -adminMenuChoice : <b>String</b>
-    -flightMenuChoice : <b>String</b>
-    -paymentMenuChoice : <b>String</b>
+    -loginMenuChoice : **String**
+    -adminMenuChoice : **String**
+    -flightMenuChoice : **String**
+    -paymentMenuChoice : **String**
     --
     ..Mutators..
-    +setLoginMenuChoice(loginMenuChoice : <b>String</b>) : void
-    +setAdminMenuChoice(adminMenuChoice : <b>String</b>) : void
-    +setFlightMenuChoice(flightMenuCHoice : <b>String</b>) : void
-    +setPaymentMenuChoice(paymentMenuChoice : <b>String</b>) : void
+    +setLoginMenuChoice(loginMenuChoice : **String**) : void
+    +setAdminMenuChoice(adminMenuChoice : **String**) : void
+    +setFlightMenuChoice(flightMenuCHoice : **String**) : void
+    +setPaymentMenuChoice(paymentMenuChoice : **String**) : void
     ..Accessors..
-    +getLoginMenuChoice() : <b>String</b>
-    +getAdminMenuChoice() : <b>String</b>
-    +getFlightMenuChoice() : <b>String</b>
-    +getPaymentMenuChoice() : <b>String</b>
+    +getLoginMenuChoice() : **String**
+    +getAdminMenuChoice() : **String**
+    +getFlightMenuChoice() : **String**
+    +getPaymentMenuChoice() : **String**
     ..Custom Methods..
     +startingMenu() : void
     +adminMenu() : void
     +userMenu(flightCheck : boolean) : void
     +paymentMenu() : void
+    ..Extra Custom Methods..
+    +**clearScreen() : void**
+    +**pause() : void**
 }
 
 class Payment
@@ -30,7 +33,7 @@ class Payment
     --
     ..Mutators..
     +setAccount(account : Account) : void
-    +setCash(cash : Double) : void
+    +setCash(cash : double) : void
     ..Accessors..
     +getCash() : double
     ..Custom Methods..
@@ -43,7 +46,7 @@ class Flight
 {
     -flightCode : String
     -flightLocation : String
-    -flightPrice : String
+    -flightPrice : double
     --
     ..Constructors..
     +Flight()
@@ -131,6 +134,12 @@ class Airlines
     ==
 }
 
+Flight <|-- CreditCard 
+CreditCard <|-- Account
+Account <|-- Validation
 
+Account <|.. Payment
+
+Menu <|..|> Airlines
 
 ```@enduml

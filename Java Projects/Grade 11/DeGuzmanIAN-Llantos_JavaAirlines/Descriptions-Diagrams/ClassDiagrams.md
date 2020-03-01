@@ -5,9 +5,6 @@ class Menu
     -adminMenuChoice : **String**
     -flightMenuChoice : **String**
     -paymentMenuChoice : **String**
-    ..Extra Variables..
-    -**loginInputUsername : String**
-    -**loginInputPassword : String**
     
     --
     ..Mutators..
@@ -33,10 +30,7 @@ class Menu
     +**scanner : Scanner(System.in)**
     +**stringInput() : String**
     +**doubleInput() : double**
-    +**setLoginInputUsername() : void**
-    +**getLoginInputUsername() : String**
-    +**setLoginInputPassword() : void**
-    +**getLoginInputPassword() : String**
+    +**inputLabel(inputLabel : String) : void**
 }
 
 class Payment

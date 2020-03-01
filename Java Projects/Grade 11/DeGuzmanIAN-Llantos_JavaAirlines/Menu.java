@@ -8,8 +8,6 @@ public class Menu
     private String flightMenuChoice;
     private String paymentMenuChoice;
 
-    private Scanner scanner = new Scanner(System.in);
-
     public void setLoginMenuChoice(String loginMenuChoice)
     {
         this.loginMenuChoice = loginMenuChoice;
@@ -98,9 +96,8 @@ public class Menu
     }
 
     // CUSTOM STUFF
-    private String loginInputUsername;
-    private String loginInputPassword;
-
+    private Scanner scanner = new Scanner(System.in);
+    
     public void clearScreen() throws IOException, InterruptedException 
     {
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -131,21 +128,9 @@ public class Menu
         System.out.println("\n" + invalidMessage);
         pause();
     }
-    public void setLoginInputUsername(String loginInputUsername)
+    public void inputLabel(String inputLabel)
     {
-        this.loginInputUsername = loginInputUsername;
-    }
-    public String getLoginInputUsername()
-    {
-        return this.loginInputUsername;
-    }
-    public void setLoginInputPassowrd(String loginInputPassword)
-    {
-        this.loginInputPassword = loginInputPassword;
-    }
-    public String getLoginInputPassword()
-    {
-        return this.loginInputPassword;
+        System.out.print("\nEnter " + inputLabel + ": ");
     }
 
 }

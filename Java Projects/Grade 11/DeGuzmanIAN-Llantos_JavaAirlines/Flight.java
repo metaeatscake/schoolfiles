@@ -34,4 +34,9 @@ public class Flight
         return this.flightPrice;
     }
 
+    public void flightMenu(int menuNum)
+    {
+        System.out.println("["+menuNum+"] (" + getFlightCode() + ") " + getFlightLocation() + " <Price: " + getFlightPrice() + ">");
+    }
+
 }

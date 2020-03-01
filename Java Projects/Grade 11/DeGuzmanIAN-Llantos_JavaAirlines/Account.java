@@ -42,7 +42,7 @@ public class Account extends CreditCard
     {
         this.accountType = accountType;
     }
-    public void setName(Sting name)
+    public void setName(String name)
     {
         this.name = name;
     }
@@ -59,7 +59,7 @@ public class Account extends CreditCard
         this.flight = flight;
     }
 
-    public String getUserName()
+    public String getUsername()
     {
         return this.username;
     }

@@ -57,6 +57,7 @@ public class Menu
         System.out.println("\n--Java Airlines Login Menu--");
         System.out.println("[1] Login");
         System.out.println("[2] Exit");
+        System.out.print("\nEnter Choice: ");
     }
 
     public void adminMenu()
@@ -64,6 +65,7 @@ public class Menu
         System.out.println("\n--Admin Menu--");
         System.out.println("[1] Edit Flights");
         System.out.println("[2] Logout");
+        System.out.print("\nEnter Choice: ");
     }
 
     public void userMenu(boolean flightCheck)
@@ -83,6 +85,7 @@ public class Menu
 
         System.out.println("[4] Payment");
         System.out.println("[5] Logout");
+        System.out.print("\nEnter Choice: ");
     }
 
     public void paymentMenu()
@@ -91,7 +94,12 @@ public class Menu
         System.out.println("[1] Credit Card Payment");
         System.out.println("[2] Cash Payment");
         System.out.println("[3] Back");
+        System.out.print("\nEnter Choice: ");
     }
+
+    // CUSTOM STUFF
+    private String loginInputUsername;
+    private String loginInputPassword;
 
     public void clearScreen() throws IOException, InterruptedException 
     {
@@ -111,6 +119,33 @@ public class Menu
     public double doubleInput()
     {
         return Double.parseDouble(scanner.nextLine());
+    }
+    public void goodbye()
+    {
+        System.out.println("\n+----------+");
+        System.out.println("| Goodbye! |");
+        System.out.println("+----------+");
+    }
+    public void invalid(String invalidMessage) throws IOException
+    {
+        System.out.println("\n" + invalidMessage);
+        pause();
+    }
+    public void setLoginInputUsername(String loginInputUsername)
+    {
+        this.loginInputUsername = loginInputUsername;
+    }
+    public String getLoginInputUsername()
+    {
+        return this.loginInputUsername;
+    }
+    public void setLoginInputPassowrd(String loginInputPassword)
+    {
+        this.loginInputPassword = loginInputPassword;
+    }
+    public String getLoginInputPassword()
+    {
+        return this.loginInputPassword;
     }
 
 }

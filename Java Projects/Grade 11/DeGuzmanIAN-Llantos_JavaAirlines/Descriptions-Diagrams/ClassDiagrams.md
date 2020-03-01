@@ -5,6 +5,9 @@ class Menu
     -adminMenuChoice : **String**
     -flightMenuChoice : **String**
     -paymentMenuChoice : **String**
+    ..Extra Variables..
+    -**loginInputUsername : String**
+    -**loginInputPassword : String**
     
     --
     ..Mutators..
@@ -25,9 +28,15 @@ class Menu
     ..Extra Custom Methods..
     +**clearScreen() : void**
     +**pause() : void**
+    +**goodbye() : void**
+    +**invalid(invalidMessage : String) : void**
     +**scanner : Scanner(System.in)**
     +**stringInput() : String**
     +**doubleInput() : double**
+    +**setLoginInputUsername() : void**
+    +**getLoginInputUsername() : String**
+    +**setLoginInputPassword() : void**
+    +**getLoginInputPassword() : String**
 }
 
 class Payment
@@ -63,6 +72,8 @@ class Flight
     +getFlightCode() : String
     +getFlightLocation() : String
     +getFlightPrice() : double
+    ..Extra Custom Methods..
+    +**flightMenu() : void**
 }
 
 class CreditCard

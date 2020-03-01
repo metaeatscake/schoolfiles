@@ -44,7 +44,7 @@ public class Payment
 
         if(cash >= flight.getFlightPrice())
         {
-            conditon = true;
+            condition = true;
         }
         else
         {

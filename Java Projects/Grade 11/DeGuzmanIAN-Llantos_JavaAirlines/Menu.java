@@ -72,7 +72,7 @@ public class Menu
         System.out.println("[1] View Account");
         System.out.println("[2] View Flight");
         
-        if(flightCheck == true)
+        if(flightCheck() == true)
         {
             System.out.println("[3] Edit Flight");
         }

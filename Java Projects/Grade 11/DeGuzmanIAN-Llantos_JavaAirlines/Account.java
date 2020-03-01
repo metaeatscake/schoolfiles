@@ -25,9 +25,9 @@ public class Account extends CreditCard
         this.name = name;
         this.address = address;
         this.contactNumber = contactNumber;
-        this.cardNumber = cardNumber;
-        this.month = month;
-        this.year = year;
+        setCardNumber(cardNumber);
+        setMonth(month);
+        setYear(year);
     }
 
     public void setUsername(String username)

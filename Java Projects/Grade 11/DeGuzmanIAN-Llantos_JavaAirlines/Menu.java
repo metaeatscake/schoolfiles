@@ -132,5 +132,24 @@ public class Menu
     {
         System.out.print("\nEnter " + inputLabel + ": ");
     }
+    public void flightMenuTitle(String accountType)
+    {
+        String menuLabel = "";
 
+        if(accountType.equals("user"))
+        {
+            menuLabel = "Booking";
+        }
+        else if(accountType.equals("admin"))
+        {
+            menuLabel = "Editor";
+        }
+        System.out.println("\n---Flight " + menuLabel + " Menu---");
+        System.out.println("Please select a flight...");
+    }
+    public void flightMenuExit()
+    {
+        System.out.println("[4] Exit");
+        System.out.print("Enter Choice: ");
+    }
 }

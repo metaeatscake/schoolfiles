@@ -24,34 +24,21 @@ public class Payment
 
     public boolean creditCardPayment(String cardNumber, String month, String year)
     {
-        boolean condition;
-
-        if(cardNumber.equals(account.getCardNumber()) && month.equals(account.getMonth()) && year.equals(account.getYear()))
-        {
-            condition = true;
-        }
-        else
-        {
-            condition = false;
-        }
-
-        return condition;
+        // Put the whole condition as the return. Test all of these, and if 
+        // ANY of them are false, the return is false.
+        return
+        (
+            cardNumber.equals(account.getCardNumber()) && 
+            month.equals(account.getMonth()) && 
+            year.equals(account.getYear())
+        );
+        
     }
 
     public boolean cashPayment(double cash)
     {
-        boolean condition;
-
-        if(cash >= flight.getFlightPrice())
-        {
-            condition = true;
-        }
-        else
-        {
-            condition = false;
-        }
-
-        return condition;
+        // Boolean methods can have the condition in the return.
+        return(cash >= flight.getFlightPrice());   
     }
 
 }

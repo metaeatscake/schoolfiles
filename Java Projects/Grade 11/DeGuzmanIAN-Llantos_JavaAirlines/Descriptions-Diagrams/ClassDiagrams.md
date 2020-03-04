@@ -31,6 +31,8 @@ class Menu
     +**stringInput() : String**
     +**doubleInput() : double**
     +**inputLabel(inputLabel : String) : void**
+    +**flightMenuTitle(accountType : String) : void**
+    +**flightMenuExit() : void**
 }
 
 class Payment
@@ -55,13 +57,14 @@ class Flight
     -flightCode : String
     -flightLocation : String
     -flightPrice : double
+    +**inputIgnored = false : boolean**
     --
     ..Constructors..
     +Flight()
     +Flight(flightCode : String, flightLocation : String, flightPrice : double)
-    ..Mutators..
+    ..**Customized** Mutators..
     +setFlightLocation(flightLocation : String) : void
-    +setFlightPrice(flightPrice : double) : void
+    +setFlightPrice(flightPrice : **String**) : void
     ..Accessors..
     +getFlightCode() : String
     +getFlightLocation() : String
@@ -138,6 +141,8 @@ class Validation
     +**getAttempts() : int**
     ..Extra Custom Methods..
     +**resetAttempts() : void**
+    +**isInputBlank(input : String) : boolean**
+    +**isInputNumeric(input : String) : boolean**
 }
 
 class Airlines

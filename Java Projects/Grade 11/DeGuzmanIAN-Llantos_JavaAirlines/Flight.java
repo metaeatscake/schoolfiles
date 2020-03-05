@@ -4,7 +4,9 @@ public class Flight
     private String flightLocation;
     private double flightPrice;
 
-    public boolean inputIgnored = false;
+    //Input verification variables
+    private boolean fullString;
+    private boolean numeric;
 
     public Flight(){}
     public Flight(String flightCode, String flightLocation, double flightPrice)
@@ -16,16 +18,18 @@ public class Flight
 
     public void setFlightLocation(String flightLocation)
     {
-        boolean blank = false;
+        this.fullString = true;
+        setInputValid(true);
 
         // trim() removes any extra spaces, isEmpty() tests if there is still a letter after removing all spaces.
         if(flightLocation == null || flightLocation.trim().isEmpty())
         {
-            blank = true;
+            this.fullString = false;
+            setInputValid(false);
         }
 
         // If the input is not blank, set it as the new location.
-        if(blank == false)
+        if(this.fullString == true)
         {
             this.flightLocation = flightLocation;
         }
@@ -37,8 +41,8 @@ public class Flight
     public void setFlightPrice(String flightPrice)
     {
         // Default. Assuming no errors, input will be numeric.
-        boolean numeric = true;
-
+        this.numeric = true;
+        setInputValid(true);
         try
         {
             // If the input price contained a letter or space in between the numbers, error.
@@ -47,11 +51,12 @@ public class Flight
         catch(NumberFormatException e)
         {
             // The error will make the tester variable false.
-            numeric = false;
+            this.numeric = false;
+            setInputValid(false);
         }
 
         // Set the price if the input is actually a number.
-        if(numeric == true)
+        if(this.numeric == true)
         {
             this.flightPrice = num;
         }
@@ -74,9 +79,28 @@ public class Flight
         return this.flightPrice;
     }
 
-    public void flightMenu(int menuNum)
+    public void flightMenuOption(int optionNumber)
     {
-        System.out.println("["+menuNum+"] (" + getFlightCode() + ") " + getFlightLocation() + " <Price: " + getFlightPrice() + ">");
+        System.out.println("["+optionNumber+"] (" + getFlightCode() + ") " + getFlightLocation() + " <Price: " + getFlightPrice() + ">");
+    }
+    public void setInputValid(boolean inputValid)
+    {
+        this.inputValid = inputValid;
+    }
+    public boolean isInputValid()
+    {
+        // Simulations
+        //      Numeric     fullString  Outcome
+        //--------------------------------------
+        //      TRUE        TRUE        TRUE
+        //      FALSE       TRUE        FALSE
+        //      TRUE        FALSE       FALSE
+        //      FALSE       FALSE       FALSE
+        //--------------------------------------
+        // The admin changes are only valid if both LOCATION
+        // AND PRICE are acceptable.
+
+        return this.numeric && this.fullString;
     }
 
 }

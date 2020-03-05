@@ -33,6 +33,7 @@ class Menu
     +**inputLabel(inputLabel : String) : void**
     +**flightMenuTitle(accountType : String) : void**
     +**flightMenuExit() : void**
+    +**printFlightMenuChanges(holderObject : Flight, targetObject : Flight)**
 }
 
 class Payment
@@ -57,7 +58,9 @@ class Flight
     -flightCode : String
     -flightLocation : String
     -flightPrice : double
-    +**inputIgnored = false : boolean**
+    ..**Input Verification Variables**
+    -**fullString : boolean**
+    -**numeric : boolean**
     --
     ..Constructors..
     +Flight()
@@ -71,6 +74,7 @@ class Flight
     +getFlightPrice() : double
     ..Extra Custom Methods..
     +**flightMenu() : void**
+    +**isInputValid() : boolean**
 }
 
 class CreditCard
@@ -141,8 +145,6 @@ class Validation
     +**getAttempts() : int**
     ..Extra Custom Methods..
     +**resetAttempts() : void**
-    +**isInputBlank(input : String) : boolean**
-    +**isInputNumeric(input : String) : boolean**
 }
 
 class Airlines

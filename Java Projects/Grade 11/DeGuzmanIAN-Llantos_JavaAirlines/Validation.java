@@ -36,24 +36,4 @@ public class Validation extends Account
         this.attemptsCtr = 0;
     }
     
-    public boolean isInputBlank(String input)
-    {
-        return input == null || input.trim().isEmpty();
-    }
-
-    public boolean isInputNumeric(String input)
-    {
-        boolean numeric = true;
-
-        try
-        {
-            Double num = Double.parseDouble(input.trim());
-        }
-        catch(NumberFormatException e)
-        {
-            numeric = false;
-        }
-
-        return numeric;
-    }
 }

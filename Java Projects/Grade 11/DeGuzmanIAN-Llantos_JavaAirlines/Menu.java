@@ -152,4 +152,16 @@ public class Menu
         System.out.println("[4] Exit");
         System.out.print("Enter Choice: ");
     }
+    public void printFlightChanges(Flight holderObject, Flight targetObject)
+    {
+        System.out.println("\nChanges Applied Successfully...");
+        
+        System.out.println("\nOriginal Values:");
+        System.out.println("\n\tLocation: " + targetObject.getFlightLocation());
+        System.out.println("\n\tPrice: " + targetObject.getFlightPrice());
+
+        System.out.println("\nNew Values: ");
+        System.out.println("\n\tLocation: " + holderObject.getFlightLocation());
+        System.out.println("\n\tPrice: " + holderObject.getFlightPrice());
+    }
 }

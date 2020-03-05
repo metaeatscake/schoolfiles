@@ -78,42 +78,75 @@ public class Airlines
                                     {
                                         menu.clearScreen();
                                         menu.flightMenuTitle("admin");
-                                        plane1.flightMenu(1);
-                                        plane2.flightMenu(2);
-                                        plane3.flightMenu(3);
+                                        plane1.flightMenuOption(1);
+                                        plane2.flightMenuOption(2);
+                                        plane3.flightMenuOption(3);
                                         menu.flightMenuExit();
                                         menu.setFlightMenuChoice(menu.stringInput());
 
                                         switch(menu.getFlightMenuChoice().trim())
                                         {
                                             case "1":
-                                                menu.inputLabel("new flight location");
-                                                plane1.setFlightLocation(menu.stringInput());
-                                                menu.inputLabel("new flight price");
-                                                plane1.setFlightPrice(menu.stringInput());
 
-                                                // The validation for the inputs are already on the setters.
-                                                // The program will just output a notice saying that nothing
-                                                // would be changed if the inputs were wrong.
-                                                menu.invalid("Notice: If the new location is blank or the new price is blank,\nNothing would be changed.");
+                                                menu.inputLabel("new flight location");
+                                                valid.setFlightLocation(menu.stringInput());
+                                                menu.inputLabel("new flight price");
+                                                valid.setFlightPrice(menu.stringInput());
+
+                                                if(valid.isInputValid() == true)
+                                                {
+                                                    menu.printFlightChanges(valid, plane1);
+                                                    plane1.setFlightLocation(valid.getFlightLocation());
+                                                    plane1.setFlightPrice(valid.getFlightPrice());
+                                                    menu.pause();
+                                                }
+                                                else
+                                                {
+                                                    menu.invalid("Changes Denied. \nLocation may be blank and/or the new price may not be a number.");
+                                                }
+
                                             break;
 
                                             case "2":
+                                                
                                                 menu.inputLabel("new flight location");
-                                                plane2.setFlightLocation(menu.stringInput());
+                                                valid.setFlightLocation(menu.stringInput());
                                                 menu.inputLabel("new flight price");
-                                                plane2.setFlightPrice(menu.stringInput());
+                                                valid.setFlightPrice(menu.stringInput());
 
-                                                menu.invalid("Notice: If the new location is blank or the new price is blank,\nNothing would be changed.");
+                                                if(valid.isInputValid() == true)
+                                                {
+                                                    menu.printFlightChanges(valid, plane2);
+                                                    plane2.setFlightLocation(valid.getFlightLocation());
+                                                    plane2.setFlightPrice(valid.getFlightPrice());
+                                                    menu.pause();
+                                                }
+                                                else
+                                                {
+                                                    menu.invalid("Changes Denied. \nLocation may be blank and/or the new price may not be a number.");
+                                                }
+
                                             break;
 
                                             case "3":
+                                                
                                                 menu.inputLabel("new flight location");
-                                                plane3.setFlightLocation(menu.stringInput());
+                                                valid.setFlightLocation(menu.stringInput());
                                                 menu.inputLabel("new flight price");
-                                                plane3.setFlightPrice(menu.stringInput());
+                                                valid.setFlightPrice(menu.stringInput());
 
-                                                menu.invalid("Notice: If the new location is blank and/or the new price is blank,\nNothing would be changed.");
+                                                if(valid.isInputValid() == true)
+                                                {
+                                                    menu.printFlightChanges(valid, plane3);
+                                                    plane3.setFlightLocation(valid.getFlightLocation());
+                                                    plane3.setFlightPrice(valid.getFlightPrice());
+                                                    menu.pause();
+                                                }
+                                                else
+                                                {
+                                                    menu.invalid("Changes Denied. \nLocation may be blank and/or the new price may not be a number.");
+                                                }
+
                                             break;
 
                                             case "4": 
@@ -129,7 +162,8 @@ public class Airlines
 
                                 case "2": 
                                     menu.goodbye(); 
-                                    menu.pause(); 
+                                    menu.pause();
+                                    valid.setLoginCheck(false); 
                                 break;
 
                                 default: 
@@ -151,7 +185,7 @@ public class Airlines
                             switch(menu.getUserMenuChoice().trim())
                             {
                                 case "1":
-
+                                    
                                 break;
 
                                 case "2":
@@ -169,6 +203,7 @@ public class Airlines
                                 case "5":
                                     menu.goodbye();
                                     menu.pause();
+                                    valid.setLoginCheck(false);
                                 break;
 
                                 default: 

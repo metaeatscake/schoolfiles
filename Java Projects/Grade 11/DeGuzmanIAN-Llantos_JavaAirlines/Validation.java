@@ -33,7 +33,7 @@ public class Validation extends Account
 
     public void resetAttempts()
     {
-        this.attemptsCtr = 0;
+        this.attemptsCtr = 1;
     }
     
 }

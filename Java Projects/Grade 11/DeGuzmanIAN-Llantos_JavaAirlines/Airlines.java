@@ -16,7 +16,7 @@ public class Airlines
         Flight plane3 = new Flight("1KL78H","Beijing, China",4000);
 
         // Loop 0: Login Menu
-        while(!menu.getLoginMenuChoice().trim().equals("2"))
+        do
         {
             menu.clearScreen();
             menu.startingMenu();
@@ -29,7 +29,7 @@ public class Airlines
                     
                     // Loop 1: Login Verification
                     valid.resetAttempts();
-                    for(int i = 0; valid.getLoginCheck() == false && valid.getAttempts() < 3;i++)
+                    for(int i = 1; valid.getLoginCheck() == false && valid.getAttempts() < 3;i++)
                     {
                         menu.clearScreen();
                         // Testing the attempts OOP
@@ -63,7 +63,7 @@ public class Airlines
                     if(valid.getLoginCheck() == true && valid.getAccountType().equals("admin"))
                     {
                         // Loop 2: Admin Menu
-                        while(!menu.getAdminMenuChoice().trim().equals("2"))
+                        do
                         {
                             menu.clearScreen();
                             menu.adminMenu();
@@ -74,7 +74,7 @@ public class Airlines
                                 case "1":
                                     
                                     // Loop 3: Admin Flight Editor
-                                    while(!menu.getFlightMenuChoice().equals("4"))
+                                    do
                                     {
                                         menu.clearScreen();
                                         menu.flightMenuTitle("admin");
@@ -157,7 +157,9 @@ public class Airlines
                                             default: 
                                                 menu.invalid("Invalid Input.");
                                         }
-                                    }
+
+                                    } while(!menu.getFlightMenuChoice().equals("4"));
+
                                 break;
 
                                 case "2": 
@@ -170,13 +172,13 @@ public class Airlines
                                     menu.invalid("Invalid Input"); 
                                 break;
                             }
-                        }
+                        } while(!menu.getAdminMenuChoice().equals("2"));
                     }
 
                     else if(valid.getLoginCheck() == true && valid.getAccountType().equals("user"))
                     {
                         // Loop 3: User Menu
-                        while(!menu.getUserMenuChoice().trim().equals("5"))
+                        do
                         {
                             menu.clearScreen();
                             menu.userMenu(valid.getFlightCheck());
@@ -211,7 +213,13 @@ public class Airlines
                                     menu.pause();
                                 break;
                             }
-                        }
+                            
+                        } while(!menu.getUserMenuChoice().equals("5"));
+                    }
+
+                    else
+                    {
+                        menu.invalid("Invalid login after three attempts...Returning to starting Menu...");
                     }
 
                 break;
@@ -224,6 +232,7 @@ public class Airlines
                     menu.invalid("Invalid Input"); 
                     menu.pause();
             }
-        }
+
+        } while(!menu.getLoginMenuChoice().equals("2"));
     }
 }

@@ -166,6 +166,6 @@ public class Menu
     }
     public void loginAttemptsCounter(Validation valid)
     {
-        System.out.println("Attempts Left: " + (3 - valid.getAttempts()));
+        System.out.println("Attempts: " + valid.getAttempts());
     }
 }

@@ -135,15 +135,18 @@ class Validation
     -loginCheck = false : boolean
     -flightCheck = false : boolean
     -**attemptsCtr : int**
+    -**attemptsLimit : int**
     --
     ..Mutators..
     +setLoginCheck(loginCheck : boolean) : void
     +setFlightCheck(flightCheck : boolean) : void
-    +**setAttempts(counter : int) : void**
+    +**setAttempts(attemptsCtr : int) : void**
+    +**setAttemptsLimit(attemptsLimit : int) : void**
     ..Accessors..
     +getLoginCheck() : boolean
     +getFlightCheck() : boolean
     +**getAttempts() : int**
+    +**getAttemptsLimit() : int**
     ..Extra Custom Methods..
     +**resetAttempts() : void**
 }

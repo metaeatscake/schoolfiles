@@ -15,6 +15,9 @@ public class Airlines
         Flight plane2 = new Flight("5PNB61", "Akihabara, Japan", 4500);
         Flight plane3 = new Flight("1KL78H","Beijing, China",4000);
 
+        // Change this to control amount of acceptable login attempts
+        valid.setAttemptsLimit(3);
+
         // Loop 0: Login Menu
         do
         {
@@ -29,7 +32,8 @@ public class Airlines
                     
                     // Loop 1: Login Verification
                     valid.resetAttempts();
-                    for(int i = 1; valid.getLoginCheck() == false && valid.getAttempts() < 3;i++)
+                    
+                    for(int i = 1; valid.getLoginCheck() == false && valid.getAttempts() < valid.getAttemptsLimit();i++)
                     {
                         menu.clearScreen();
                         
@@ -58,6 +62,9 @@ public class Airlines
                         }
                     }
 
+                    //==================//
+                    //  ADMIN OPTION    //
+                    //==================//
                     if(valid.getLoginCheck() == true && valid.getAccountType().equals("admin"))
                     {
                         // Loop 2: Admin Menu
@@ -174,6 +181,9 @@ public class Airlines
                         } while(!menu.getAdminMenuChoice().trim().equals("2"));
                     }
 
+                    //==============//
+                    //  USER OPTION //
+                    //==============//
                     else if(valid.getLoginCheck() == true && valid.getAccountType().equals("user"))
                     {
                         // Loop 3: User Menu
@@ -217,7 +227,7 @@ public class Airlines
 
                     else
                     {
-                        menu.invalid("Invalid login after three attempts...Returning to starting Menu...");
+                        menu.invalid("Invalid login after "+ valid.getAttemptsLimit() + " attempts...Returning to starting Menu...");
                     }
 
                 break;

@@ -4,6 +4,7 @@ public class Validation extends Account
     private boolean flightCheck = false;
 
     private int attemptsCtr;
+    private int attemptsLimit;
 
     public void setLoginCheck(boolean loginCheck)
     {
@@ -13,9 +14,13 @@ public class Validation extends Account
     {
         this.flightCheck = flightCheck;
     }
-    public void setAttempts(int counter)
+    public void setAttempts(int attemptsCtr)
     {
-        this.attemptsCtr = counter;
+        this.attemptsCtr = attemptsCtr;
+    }
+    public void setAttemptsLimit(int attemptsLimit)
+    {
+        this.attemptsLimit = attemptsLimit;
     }
 
     public boolean getLoginCheck()
@@ -30,10 +35,14 @@ public class Validation extends Account
     {
         return this.attemptsCtr;
     }
+    public int getAttemptsLimit()
+    {
+        return this.attemptsLimit;
+    }
 
     public void resetAttempts()
     {
-        this.attemptsCtr = 1;
+        this.attemptsCtr = 0;
     }
     
 }

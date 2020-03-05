@@ -19,13 +19,11 @@ public class Flight
     public void setFlightLocation(String flightLocation)
     {
         this.fullString = true;
-        setInputValid(true);
 
         // trim() removes any extra spaces, isEmpty() tests if there is still a letter after removing all spaces.
         if(flightLocation == null || flightLocation.trim().isEmpty())
         {
             this.fullString = false;
-            setInputValid(false);
         }
 
         // If the input is not blank, set it as the new location.
@@ -42,17 +40,17 @@ public class Flight
     {
         // Default. Assuming no errors, input will be numeric.
         this.numeric = true;
-        setInputValid(true);
+        double num=0;
+        
         try
         {
             // If the input price contained a letter or space in between the numbers, error.
-            double num = Double.parseDouble(flightPrice.trim());
+            num = Double.parseDouble(flightPrice.trim());
         }
         catch(NumberFormatException e)
         {
             // The error will make the tester variable false.
             this.numeric = false;
-            setInputValid(false);
         }
 
         // Set the price if the input is actually a number.
@@ -82,10 +80,6 @@ public class Flight
     public void flightMenuOption(int optionNumber)
     {
         System.out.println("["+optionNumber+"] (" + getFlightCode() + ") " + getFlightLocation() + " <Price: " + getFlightPrice() + ">");
-    }
-    public void setInputValid(boolean inputValid)
-    {
-        this.inputValid = inputValid;
     }
     public boolean isInputValid()
     {

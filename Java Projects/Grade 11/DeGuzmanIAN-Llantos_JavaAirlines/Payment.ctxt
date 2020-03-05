@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Payment
+comment1.params=account
+comment1.target=void\ setAccount(Account)
+comment2.params=flight
+comment2.target=void\ setFlight(Flight)
+comment3.params=cash
+comment3.target=void\ setCash(double)
+comment4.params=
+comment4.target=double\ getCash()
+comment5.params=cardNumber\ month\ year
+comment5.target=boolean\ creditCardPayment(java.lang.String,\ java.lang.String,\ java.lang.String)
+comment6.params=cash
+comment6.target=boolean\ cashPayment(double)
+numComments=7

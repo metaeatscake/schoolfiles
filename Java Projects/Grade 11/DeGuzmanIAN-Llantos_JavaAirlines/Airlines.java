@@ -69,7 +69,7 @@ public class Airlines
                             menu.adminMenu();
                             menu.setAdminMenuChoice(menu.stringInput());
 
-                            switch(menu.getAdminChoice().trim())
+                            switch(menu.getAdminMenuChoice().trim())
                             {
                                 case "1":
                                     
@@ -97,7 +97,7 @@ public class Airlines
                                                 {
                                                     menu.printFlightChanges(valid, plane1);
                                                     plane1.setFlightLocation(valid.getFlightLocation());
-                                                    plane1.setFlightPrice(valid.getFlightPrice());
+                                                    plane1.setFlightPrice(Double.toString(valid.getFlightPrice()));
                                                     menu.pause();
                                                 }
                                                 else
@@ -118,7 +118,7 @@ public class Airlines
                                                 {
                                                     menu.printFlightChanges(valid, plane2);
                                                     plane2.setFlightLocation(valid.getFlightLocation());
-                                                    plane2.setFlightPrice(valid.getFlightPrice());
+                                                    plane2.setFlightPrice(Double.toString(valid.getFlightPrice()));
                                                     menu.pause();
                                                 }
                                                 else
@@ -139,7 +139,7 @@ public class Airlines
                                                 {
                                                     menu.printFlightChanges(valid, plane3);
                                                     plane3.setFlightLocation(valid.getFlightLocation());
-                                                    plane3.setFlightPrice(valid.getFlightPrice());
+                                                    plane3.setFlightPrice(Double.toString(valid.getFlightPrice()));
                                                     menu.pause();
                                                 }
                                                 else

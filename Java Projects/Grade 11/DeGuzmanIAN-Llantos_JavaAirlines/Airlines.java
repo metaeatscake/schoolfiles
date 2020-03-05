@@ -32,9 +32,8 @@ public class Airlines
                     for(int i = 1; valid.getLoginCheck() == false && valid.getAttempts() < 3;i++)
                     {
                         menu.clearScreen();
-                        // Testing the attempts OOP
-                        System.out.println("(Testing: OOP Attempts Accumulator Loop)");
-                        System.out.println("Count of Attempts: " + valid.getAttempts());
+                        
+                        menu.loginAttemptsCounter(valid);
 
                         menu.inputLabel("username");
                         valid.setUsername(menu.stringInput());
@@ -55,7 +54,6 @@ public class Airlines
                         }
                         else
                         {
-                            //valid.setLoginCheck(false);
                             valid.setAttempts(i);
                         }
                     }
@@ -172,7 +170,8 @@ public class Airlines
                                     menu.invalid("Invalid Input"); 
                                 break;
                             }
-                        } while(!menu.getAdminMenuChoice().equals("2"));
+
+                        } while(!menu.getAdminMenuChoice().trim().equals("2"));
                     }
 
                     else if(valid.getLoginCheck() == true && valid.getAccountType().equals("user"))
@@ -210,11 +209,10 @@ public class Airlines
 
                                 default: 
                                     menu.invalid("Invalid Input");
-                                    menu.pause();
                                 break;
                             }
-                            
-                        } while(!menu.getUserMenuChoice().equals("5"));
+
+                        } while(!menu.getUserMenuChoice().trim().equals("5"));
                     }
 
                     else
@@ -230,9 +228,8 @@ public class Airlines
 
                 default: 
                     menu.invalid("Invalid Input"); 
-                    menu.pause();
             }
 
-        } while(!menu.getLoginMenuChoice().equals("2"));
+        } while(!menu.getLoginMenuChoice().trim().equals("2"));
     }
 }

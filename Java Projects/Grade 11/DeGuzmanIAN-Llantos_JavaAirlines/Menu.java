@@ -150,18 +150,22 @@ public class Menu
     public void flightMenuExit()
     {
         System.out.println("[4] Exit");
-        System.out.print("Enter Choice: ");
+        System.out.print("\nEnter Choice: ");
     }
     public void printFlightChanges(Flight holderObject, Flight targetObject)
     {
         System.out.println("\nChanges Applied Successfully...");
 
         System.out.println("\nOriginal Values:");
-        System.out.println("\n\tLocation: " + targetObject.getFlightLocation());
-        System.out.println("\n\tPrice: " + targetObject.getFlightPrice());
+        System.out.println("\tLocation: " + targetObject.getFlightLocation());
+        System.out.println("\tPrice: " + targetObject.getFlightPrice());
 
         System.out.println("\nNew Values: ");
-        System.out.println("\n\tLocation: " + holderObject.getFlightLocation());
-        System.out.println("\n\tPrice: " + holderObject.getFlightPrice());
+        System.out.println("\tLocation: " + holderObject.getFlightLocation());
+        System.out.println("\tPrice: " + holderObject.getFlightPrice());
+    }
+    public void loginAttemptsCounter(Validation valid)
+    {
+        System.out.println("Attempts Left: " + (3 - valid.getAttempts()));
     }
 }

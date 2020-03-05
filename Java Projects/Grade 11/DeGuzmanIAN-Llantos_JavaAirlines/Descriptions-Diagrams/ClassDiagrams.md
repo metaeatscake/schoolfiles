@@ -5,7 +5,8 @@ class Menu
     -adminMenuChoice : **String**
     -flightMenuChoice : **String**
     -paymentMenuChoice : **String**
-    
+    ..**Extra Objects**..
+    -{field}**scanner : Scanner(System.in)**
     --
     ..Mutators..
     +setLoginMenuChoice(loginMenuChoice : **String**) : void
@@ -27,13 +28,13 @@ class Menu
     +**pause() : void**
     +**goodbye() : void**
     +**invalid(invalidMessage : String) : void**
-    +**scanner : Scanner(System.in)**
     +**stringInput() : String**
     +**doubleInput() : double**
     +**inputLabel(inputLabel : String) : void**
     +**flightMenuTitle(accountType : String) : void**
     +**flightMenuExit() : void**
     +**printFlightMenuChanges(holderObject : Flight, targetObject : Flight)**
+    +**loginAttemptsCounter(valid : Validation) : void**
 }
 
 class Payment
@@ -58,7 +59,7 @@ class Flight
     -flightCode : String
     -flightLocation : String
     -flightPrice : double
-    ..**Input Verification Variables**
+    ..**Input Verification Variables**..
     -**fullString : boolean**
     -**numeric : boolean**
     --
@@ -167,4 +168,6 @@ Payment <|.. Airlines
 Account <|.. Airlines
 Flight <|.. Airlines
 
+Flight <|.. Menu
+Validation <|.. Menu
 ```@enduml

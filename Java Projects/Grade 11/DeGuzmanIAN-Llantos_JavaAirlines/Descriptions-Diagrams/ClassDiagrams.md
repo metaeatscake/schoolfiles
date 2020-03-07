@@ -32,7 +32,6 @@ class Menu
     +**pause() : void**
     ..Input Methods..
     +**stringInput() : String**
-    +**doubleInput() : double**
     ..Misc Local Methods..
     +**hidePassword(password : String)**
     ..General Print Methods..

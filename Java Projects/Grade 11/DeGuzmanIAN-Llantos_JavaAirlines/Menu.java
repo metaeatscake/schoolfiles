@@ -141,11 +141,6 @@ public class Menu
             return scanner.nextLine();
         }
 
-        public double doubleInput()
-        {
-            return Double.parseDouble(scanner.nextLine());
-        }
-
     //
 
     // Misc Special Methods

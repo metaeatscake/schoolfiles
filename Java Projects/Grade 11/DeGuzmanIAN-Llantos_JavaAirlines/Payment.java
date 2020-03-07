@@ -1,3 +1,4 @@
+import java.util.Arrays;
 public class Payment
 {
     private Flight flight;
@@ -35,12 +36,11 @@ public class Payment
         return this.cash;
     }
 
-    public boolean matchMonthInput(Account account,String monthInput)
+    public boolean matchMonthInput(Account account,String input)
     {
-        boolean cardMonthMatch = false;
-        boolean inputMonthMatch = false;
-        int inputMatchIndex = 12;
-        int cardMatchIndex = 12;
+        String monthInput = input.trim().toLowerCase();
+        int inputMatchIndex = 69;
+        int cardMatchIndex = 6969;
 
         String monthFullWord[] = {
             "january", "february", "march", 
@@ -65,43 +65,54 @@ public class Payment
         };
 
         // Find the index of the card
-        for (int i = 0; cardMonthMatch == false && i < monthNumA.length; i++) 
-        {
-            if(
-                account.getMonth() == monthNumA[i] ||
-                account.getMonth() == monthNumB[i] ||
-                account.getMonth().toLowerCase() == monthFullWord[i] ||
-                account.getMonth().toLowerCase() == monthShortenedWord[i]
-            ){
-                cardMonthMatch = true;
-                cardMatchIndex = i;
+
+            if(Arrays.asList(monthFullWord).contains(account.getMonth()))
+            {
+                cardMatchIndex = Arrays.asList(monthFullWord).indexOf(account.getMonth());
             }
-        }
+            else if(Arrays.asList(monthShortenedWord).contains(account.getMonth()))
+            {
+                cardMatchIndex = Arrays.asList(monthShortenedWord).indexOf(account.getMonth());
+            }
+            else if(Arrays.asList(monthNumA).contains(account.getMonth()))
+            {
+                cardMatchIndex = Arrays.asList(monthNumA).indexOf(account.getMonth());
+            }
+            else if(Arrays.asList(monthNumB).contains(account.getMonth()))
+            {
+                cardMatchIndex = Arrays.asList(monthNumB).indexOf(account.getMonth());
+            }
+            else
+            {
+                cardMatchIndex = 13;
+            }
+
+        //
 
         // Find the index of the input month
-        for (int i = 0; inputMonthMatch == false && i < monthNumA.length; i++) 
-        {
-            if(monthInput.trim() == monthNumA[i])
+        
+            if(Arrays.asList(monthFullWord).contains(monthInput))
             {
-                inputMonthMatch = true;
-                inputMatchIndex = i;
+                inputMatchIndex = Arrays.asList(monthFullWord).indexOf(monthInput);
             }
-            else if(monthInput.trim() == monthNumB[i])
+            else if(Arrays.asList(monthShortenedWord).contains(monthInput))
             {
-                inputMonthMatch = true;
-                inputMatchIndex = i;
+                inputMatchIndex = Arrays.asList(monthShortenedWord).indexOf(monthInput);
             }
-            else if(monthInput.trim().toLowerCase() == monthFullWord[i])
+            else if(Arrays.asList(monthNumA).contains(monthInput))
             {
-                inputMonthMatch = true;
-                inputMatchIndex = i;
+                inputMatchIndex = Arrays.asList(monthNumA).indexOf(monthInput);
             }
-            else if(monthInput.trim().toLowerCase() == monthShortenedWord[i])
+            else if(Arrays.asList(monthNumB).contains(monthInput))
             {
-                inputMonthMatch = true;
-                inputMatchIndex = i;
+                inputMatchIndex = Arrays.asList(monthNumB).indexOf(monthInput);
             }
-        }
+            else
+            {
+                inputMatchIndex = 12;
+            }
+        
+        //
 
         // True or False : Input month = Card month?
         return (inputMatchIndex == cardMatchIndex);

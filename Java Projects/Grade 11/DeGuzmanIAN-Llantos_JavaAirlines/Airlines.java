@@ -44,13 +44,13 @@ public class Airlines
                         menu.inputLabel("password");
                         valid.setPassword(menu.stringInput());
 
-                        if(valid.getUsername().equals(admin.getUsername()) && valid.getPassword().equals(admin.getPassword()) && valid.getAttempts() < 3)
+                        if(valid.getUsername().equals(admin.getUsername()) && valid.getPassword().equals(admin.getPassword()) && valid.getAttempts() < valid.getAttemptsLimit())
                         {
                             valid.setAccountType("admin");
                             valid.resetAttempts();
                             valid.setLoginCheck(true);
                         }
-                        else if(valid.getUsername().equals(user.getUsername()) && valid.getPassword().equals(user.getPassword()) && valid.getAttempts() < 3)
+                        else if(valid.getUsername().equals(user.getUsername()) && valid.getPassword().equals(user.getPassword()) && valid.getAttempts() < valid.getAttemptsLimit())
                         {
                             valid.setAccountType("user");
                             valid.resetAttempts();
@@ -193,14 +193,12 @@ public class Airlines
                             menu.userMenu(valid.getFlightCheck());
                             menu.setUserMenuChoice(menu.stringInput());
 
-                            pay.setAccount(user);
-
                             switch(menu.getUserMenuChoice().trim())
                             {
                                 case "1":
 
                                     menu.clearScreen();
-                                    menu.viewAccountDetails();
+                                    user.viewAccountDetails();
                                     menu.pause();
 
                                 break;
@@ -225,13 +223,12 @@ public class Airlines
                                                 {
                                                     menu.printAccountEdits(valid, user, "username");
                                                     user.setUsername(valid.getUsername());
+                                                    menu.pause();
                                                 } 
                                                 else
                                                 {
                                                     menu.invalid("Changes Denied.\nThe given username is blank.");
                                                 }
-
-                                                menu.pause();
 
                                             break;
 
@@ -244,14 +241,13 @@ public class Airlines
                                                 {
                                                     menu.printAccountEdits(valid, user, "password");
                                                     user.setPassword(valid.getPassword());
+                                                    menu.pause();
                                                 }
                                                 else
                                                 {
                                                     menu.invalid("Changes denied.\nThe given password is blank");
                                                 }
-
-                                                menu.pause();
-
+                                              
                                             break;
 
                                             case "3":
@@ -263,13 +259,12 @@ public class Airlines
                                                 {
                                                     menu.printAccountEdits(valid, user, "name");
                                                     user.setName(valid.getName());
+                                                    menu.pause();
                                                 }
                                                 else
                                                 {
                                                     menu.invalid("Changes denied.\nThe given name is blank.");
                                                 }
-
-                                                menu.pause();
 
                                             break;
 
@@ -282,12 +277,12 @@ public class Airlines
                                                 {
                                                     menu.printAccountEdits(valid, user, "address");
                                                     user.setAddress(valid.getAddress());
+                                                    menu.pause();
                                                 }
                                                 else
                                                 {
                                                     menu.invalid("Changes denied.\nThe given address is blank.");
                                                 }
-                                                menu.pause();
 
                                             break;
 
@@ -300,12 +295,12 @@ public class Airlines
                                                 {
                                                     menu.printAccountEdits(valid, user, "contactNumber");
                                                     user.setContactNumber(valid.getContactNumber());
+                                                    menu.pause();
                                                 }
                                                 else
                                                 {
                                                     menu.invalid("Changes denied.\nThe given contact number is blank.");
                                                 }
-                                                menu.pause();
 
                                             break;
 
@@ -385,7 +380,12 @@ public class Airlines
                                                     menu.invalid("Invalid Input.");
                                             }
 
-                                        } while(!menu.getFlightMenuChoice().trim().equals("4"));
+                                        } while(
+                                            !menu.getFlightMenuChoice().trim().equals("1") &&
+                                            !menu.getFlightMenuChoice().trim().equals("2") &&
+                                            !menu.getFlightMenuChoice().trim().equals("3") &&
+                                            !menu.getFlightMenuChoice().trim().equals("4")
+                                        );
 
                                     }
 
@@ -434,7 +434,12 @@ public class Airlines
                                                     menu.invalid("Invalid Input.");
                                             }
 
-                                        } while(!menu.getFlightMenuChoice().trim().equals("4"));
+                                        } while(
+                                            !menu.getFlightMenuChoice().trim().equals("1") &&
+                                            !menu.getFlightMenuChoice().trim().equals("2") &&
+                                            !menu.getFlightMenuChoice().trim().equals("3") &&
+                                            !menu.getFlightMenuChoice().trim().equals("4")
+                                        );
 
                                     }
 
@@ -453,8 +458,31 @@ public class Airlines
 
                                             switch(menu.getPaymentMenuChoice().trim())
                                             {
-                                                case "1":
-                                                    menu.flightPayment(pay.getFlight());
+                                                case "1": 
+
+                                                    menu.flightPayment(user.getFlight(), user);
+                                                    menu.inputLabel("Card Number");
+                                                    valid.setCardNumber(menu.stringInput());
+                                                    menu.inputLabel("Card Expiration Month");
+                                                    valid.setMonth(menu.stringInput());
+                                                    menu.inputLabel("Card Expiration Year");
+                                                    valid.setYear(menu.stringInput());
+
+                                                    if(pay.creditCardPayment(user,valid.getCardNumber(), valid.getMonth(), valid.getYear()) == true)
+                                                    {
+                                                        menu.flightPaymentReceipt();
+                                                        menu.pause();
+                                                    }
+                                                    else
+                                                    {
+                                                        menu.invalid("Payment Denied.\nInvalid card details.");
+                                                    }
+
+                                                break;
+
+                                                case "2":
+
+                                                    menu.flightPayment(user.getFlight());
                                                     menu.inputLabel("payment: ");
                                                     pay.setCash(menu.stringInput());
 
@@ -477,21 +505,23 @@ public class Airlines
 
                                                 break;
 
-                                                case "2": 
-                                                    menu.flightPayment(pay.getFlight(), user);
-                                                    menu.inputLabel("Card Number: ");
-                                                    valid.setCardNumber(menu.stringInput());
-                                                break;
-
                                                 case "3":
+
                                                     menu.goodbye();
                                                     menu.pause();
+
                                                 break;
 
                                                 default:
+
                                                     menu.invalid("Invalid Input.");
                                             }
-                                        } while(!menu.getPaymentMenuChoice().trim().equals("3"));
+
+                                        } while(
+                                            !menu.getPaymentMenuChoice().trim().equals("3") &&
+                                            !menu.getPaymentMenuChoice().trim().equals("2") &&
+                                            !menu.getPaymentMenuChoice().trim().equals("1")
+                                        );
                                     }
 
                                     else

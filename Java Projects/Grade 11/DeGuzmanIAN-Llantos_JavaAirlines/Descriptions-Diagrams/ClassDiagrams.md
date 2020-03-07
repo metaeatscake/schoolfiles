@@ -55,21 +55,22 @@ class Menu
 
 class Payment
 {
-    -account : Account
+    -[account : Account] REMOVED
     -cash : double
     -**flight : Flight**
     -**numericInput : boolean**
     --
     ..Mutators..
-    +setAccount(account : Account) : void
+    +[setAccount(account : Account) : void] REMOVED
     +**setFlight(flight : Flight) : void**
     +setCash(cash : **String**) : void
     ..Accessors..
     +getCash() : double
     ..Custom Methods..
-    +creditCardPayment(cardNumber : String, month : String, year : String) : boolean
+    +creditCardPayment(**account : Account**, cardNumber : String, month : String, year : String) : boolean
     +cashPayment(cash : double) : boolean
     +**isCashInputValid() : boolean**
+    +**matchMonthInput(account : Account, monthInput : String) : boolean**
 }
 
 class Flight

@@ -29,4 +29,5 @@ public class CreditCard extends Flight
     {
         return this.year;
     }
+
 }

@@ -260,6 +260,7 @@ public class Menu
             System.out.println("[3] Edit Name <" + account.getName() + ">");
             System.out.println("[4] Edit Address <" + account.getAddress() + ">");
             System.out.println("[5] Edit Contact Number <" + account.getContactNumber() + ">");
+            System.out.println("[6] Exit");
             System.out.print("\nEnter Choice: ");
         }
 
@@ -310,7 +311,6 @@ public class Menu
         {
             System.out.println("\n--Card Payment for Flight [" + flight.getFlightCode() + "]--");
             System.out.println("Price: " + flight.getFlightPrice());
-            System.out.println("\n*NOTICE: CARD MONTH HAS TO BE IN NUMBER FORMAT*");
             System.out.println("Account Holder: " + payer.getName());
         }
 

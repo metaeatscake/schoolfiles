@@ -5,6 +5,7 @@ class Menu
     -adminMenuChoice : **String**
     -flightMenuChoice : **String**
     -paymentMenuChoice : **String**
+    -**accountEditMenuChoice : String**
     ..**Extra Objects**..
     -{field}**scanner : Scanner(System.in)**
     --
@@ -13,28 +14,43 @@ class Menu
     +setAdminMenuChoice(adminMenuChoice : ** String**) : void
     +setFlightMenuChoice(flightMenuChoice : **String**) : void
     +setPaymentMenuChoice(paymentMenuChoice : **String**) : void
+    +**setAccountEditMenuChoice(accountEditMenuChoice : String)**
     ..Accessors..
     +getLoginMenuChoice() : **String**
     +getAdminMenuChoice() : **String**
     +getFlightMenuChoice() : **String**
     +getPaymentMenuChoice() : **String**
+    +**getAccountEditMenuChoice() : String**
     ..Custom Methods..
     +startingMenu() : void
     +adminMenu() : void
     +userMenu(flightCheck : boolean) : void
     +paymentMenu() : void
-    ..Extra Custom Methods..
+    --Extra Custom Methods--
+    ..Console Modifications..
     +**clearScreen() : void**
     +**pause() : void**
-    +**goodbye() : void**
-    +**invalid(invalidMessage : String) : void**
+    ..Input Methods..
     +**stringInput() : String**
     +**doubleInput() : double**
+    ..Misc Local Methods..
+    +**hidePassword(password : String)**
+    ..General Print Methods..
+    +**goodbye() : void**
+    +**invalid(invalidMessage : String) : void**
     +**inputLabel(inputLabel : String) : void**
+    ..Special Print Methods..
+    +**loginAttemptsCounter(valid : Validation) : void**
     +**flightMenuTitle(accountType : String) : void**
     +**flightMenuExit() : void**
-    +**printFlightMenuChanges(holderObject : Flight, targetObject : Flight)**
-    +**loginAttemptsCounter(valid : Validation) : void**
+    +**printFlightChanges(holderObject : Flight, targetObject : Flight)**
+    +**printUserFlight(oldFlight : Flight, newFlight : Flight)**
+    +**printUserFlight(newFlight : Flight)**
+    +**accountEditMenu(account : Account) : void**
+    +**printAccountEdits(holderObject : Account, targetObject : Account, changedVariable : String)**
+    +**flightPayment(flight : Flight)**
+    +**flightPayment(flight : Flight, payer : Account)**
+    +**flightPaymentReceipt() : void**
 }
 
 class Payment
@@ -42,16 +58,18 @@ class Payment
     -account : Account
     -cash : double
     -**flight : Flight**
+    -**numericInput : boolean**
     --
     ..Mutators..
     +setAccount(account : Account) : void
     +**setFlight(flight : Flight) : void**
-    +setCash(cash : double) : void
+    +setCash(cash : **String**) : void
     ..Accessors..
     +getCash() : double
     ..Custom Methods..
     +creditCardPayment(cardNumber : String, month : String, year : String) : boolean
     +cashPayment(cash : double) : boolean
+    +**isCashInputValid() : boolean**
 }
 
 class Flight
@@ -74,7 +92,7 @@ class Flight
     +getFlightLocation() : String
     +getFlightPrice() : double
     ..Extra Custom Methods..
-    +**flightMenu() : void**
+    +**flightMenuOption() : void**
     +**isInputValid() : boolean**
 }
 
@@ -103,6 +121,7 @@ class Account
     -address : String
     -contactNumber : String
     -flight : Flight
+    -**fullString : boolean**
     --
     ..Constructors..
     +Account()
@@ -118,7 +137,7 @@ class Account
     +setContactNumber(contactNumber : String) : void
     +setFlight(flight : Flight) : void
     ..Accessors..
-    +getUserName() : String
+    +getUsername() : String
     +getPassword() : String
     +getAccountType() : String
     +getName() : String
@@ -128,6 +147,7 @@ class Account
     ..Custom Methods..
     +viewAccountDetails() : void
     +viewFlightDetails() : void
+    +**isStringFull() : boolean**
 }
 
 class Validation
@@ -173,4 +193,5 @@ Flight <|.. Airlines
 
 Flight <|.. Menu
 Validation <|.. Menu
+Account <|.. Menu
 ```@enduml

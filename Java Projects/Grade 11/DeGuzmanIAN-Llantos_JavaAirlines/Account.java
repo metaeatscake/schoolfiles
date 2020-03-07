@@ -8,6 +8,8 @@ public class Account extends CreditCard
     private String contactNumber;
     private Flight flight;
 
+    private boolean fullString;
+
     public Account(){}
     public Account(String username, String password, String accountType)
     {
@@ -32,28 +34,85 @@ public class Account extends CreditCard
 
     public void setUsername(String username)
     {
-        this.username = username;
+        this.fullString = true;
+
+        if(username == null || username.trim().isEmpty())
+        {
+            this.fullString = false;
+        }
+
+        if(this.fullString == true)
+        {
+            this.username = username;
+        }
     }
+
     public void setPassword(String password)
     {
-        this.password = password;
+        this.fullString = true;
+
+        if(password == null || password.trim().isEmpty())
+        {
+            this.fullString = false;
+        }
+
+        if(this.fullString == true)
+        {
+            this.password = password;
+        }
     }
+
+    // Does not need verification
     public void setAccountType(String accountType)
     {
         this.accountType = accountType;
     }
+
     public void setName(String name)
     {
-        this.name = name;
+        this.fullString = true;
+
+        if(name == null || name.trim().isEmpty())
+        {
+            this.fullString = false;
+        }
+
+        if(this.fullString == true)
+        {
+            this.name = name;
+        }
     }
+
     public void setAddress(String address)
     {
-        this.address = address;
+        this.fullString = true;
+
+        if(address == null || address.trim().isEmpty())
+        {
+            this.fullString = false;
+        }
+
+        if(this.fullString == true)
+        {
+            this.address = address;
+        }
     }
+
     public void setContactNumber(String contactNumber)
     {
-        this.contactNumber = contactNumber;
+        this.fullString = true;
+
+        if(contactNumber == null || contactNumber.trim().isEmpty())
+        {
+            this.fullString = false;
+        }
+
+        if(this.fullString == true)
+        {
+            this.contactNumber = contactNumber;
+        }
     }
+    
     public void setFlight(Flight flight)
     {
         this.flight = flight;
@@ -103,5 +162,10 @@ public class Account extends CreditCard
         System.out.println("Code: " + flight.getFlightCode());
         System.out.println("Location: " + flight.getFlightLocation());
         System.out.println("Price: " + flight.getFlightPrice());
+    }
+
+    public boolean isStringFull()
+    {
+        return this.fullString;
     }
 }

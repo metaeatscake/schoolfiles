@@ -4,6 +4,8 @@ public class Payment
     private Flight flight;
     private double cash;
 
+    private boolean numericInput;
+
     public void setAccount(Account account)
     {
         this.account = account;
@@ -12,9 +14,25 @@ public class Payment
     {
         this.flight = flight;
     }
-    public void setCash(double cash)
+    public void setCash(String cash)
     {
-        this.cash = cash;
+        this.numericInput = true;
+        double num = 0;
+
+        try
+        {
+            num = Double.parseDouble(cash.trim());
+        }
+        catch(NumberFormatException e)
+        {
+            this.numericInput = false;
+        }
+
+        if(this.numericInput == true)
+        {
+            this.cash = num;
+        }
+        
     }
 
     public double getCash()
@@ -41,4 +59,8 @@ public class Payment
         return(cash >= flight.getFlightPrice());   
     }
 
+    public boolean isCashInputValid()
+    {
+        return this.numericInput;
+    }
 }

@@ -82,7 +82,7 @@ public class Airlines
                                     do
                                     {
                                         menu.clearScreen();
-                                        menu.flightMenuTitle("admin");
+                                        menu.flightMenuTitle(admin.getAccountType());
                                         plane1.flightMenuOption(1);
                                         plane2.flightMenuOption(2);
                                         plane3.flightMenuOption(3);
@@ -101,7 +101,7 @@ public class Airlines
                                                 if(valid.isInputValid() == true)
                                                 {
                                                     menu.printFlightChanges(valid, plane1);
-                                                    plane1.setFlightLocation(valid.getFlightLocation());
+                                                    plane1.setFlightLocation(valid.getFlightLocation().trim());
                                                     plane1.setFlightPrice(Double.toString(valid.getFlightPrice()));
                                                     menu.pause();
                                                 }
@@ -122,7 +122,7 @@ public class Airlines
                                                 if(valid.isInputValid() == true)
                                                 {
                                                     menu.printFlightChanges(valid, plane2);
-                                                    plane2.setFlightLocation(valid.getFlightLocation());
+                                                    plane2.setFlightLocation(valid.getFlightLocation().trim());
                                                     plane2.setFlightPrice(Double.toString(valid.getFlightPrice()));
                                                     menu.pause();
                                                 }
@@ -143,7 +143,7 @@ public class Airlines
                                                 if(valid.isInputValid() == true)
                                                 {
                                                     menu.printFlightChanges(valid, plane3);
-                                                    plane3.setFlightLocation(valid.getFlightLocation());
+                                                    plane3.setFlightLocation(valid.getFlightLocation().trim());
                                                     plane3.setFlightPrice(Double.toString(valid.getFlightPrice()));
                                                     menu.pause();
                                                 }
@@ -186,32 +186,322 @@ public class Airlines
                     //==============//
                     else if(valid.getLoginCheck() == true && valid.getAccountType().equals("user"))
                     {
-                        // Loop 3: User Menu
+                        // Loop 4: User Menu
                         do
                         {
                             menu.clearScreen();
                             menu.userMenu(valid.getFlightCheck());
                             menu.setUserMenuChoice(menu.stringInput());
 
+                            pay.setAccount(user);
+
                             switch(menu.getUserMenuChoice().trim())
                             {
                                 case "1":
-                                    
+
+                                    menu.clearScreen();
+                                    menu.viewAccountDetails();
+                                    menu.pause();
+
                                 break;
 
                                 case "2":
+
+                                    // Loop 5: Account Edit Menu
+                                    do
+                                    {
+                                        menu.clearScreen();
+                                        menu.accountEditMenu(user);
+                                        menu.setAccountEditMenuChoice(menu.stringInput());
+
+                                        switch(menu.getAccountEditMenuChoice().trim())
+                                        {
+                                            case "1":
+
+                                                menu.inputLabel("new username");
+                                                valid.setUsername(menu.stringInput());
+
+                                                if(valid.isStringFull() == true)
+                                                {
+                                                    menu.printAccountEdits(valid, user, "username");
+                                                    user.setUsername(valid.getUsername());
+                                                } 
+                                                else
+                                                {
+                                                    menu.invalid("Changes Denied.\nThe given username is blank.");
+                                                }
+
+                                                menu.pause();
+
+                                            break;
+
+                                            case "2":
+
+                                                menu.inputLabel("new password");
+                                                valid.setPassword(menu.stringInput());
+
+                                                if(valid.isStringFull() == true)
+                                                {
+                                                    menu.printAccountEdits(valid, user, "password");
+                                                    user.setPassword(valid.getPassword());
+                                                }
+                                                else
+                                                {
+                                                    menu.invalid("Changes denied.\nThe given password is blank");
+                                                }
+
+                                                menu.pause();
+
+                                            break;
+
+                                            case "3":
+
+                                                menu.inputLabel("new name");
+                                                valid.setName(menu.stringInput());
+
+                                                if(valid.isStringFull() == true)
+                                                {
+                                                    menu.printAccountEdits(valid, user, "name");
+                                                    user.setName(valid.getName());
+                                                }
+                                                else
+                                                {
+                                                    menu.invalid("Changes denied.\nThe given name is blank.");
+                                                }
+
+                                                menu.pause();
+
+                                            break;
+
+                                            case "4":
+
+                                                menu.inputLabel("new address");
+                                                valid.setAddress(menu.stringInput());
+
+                                                if(valid.isStringFull() == true)
+                                                {
+                                                    menu.printAccountEdits(valid, user, "address");
+                                                    user.setAddress(valid.getAddress());
+                                                }
+                                                else
+                                                {
+                                                    menu.invalid("Changes denied.\nThe given address is blank.");
+                                                }
+                                                menu.pause();
+
+                                            break;
+
+                                            case "5":
+
+                                                menu.inputLabel("new contact number: ");
+                                                valid.setContactNumber(menu.stringInput());
+
+                                                if(valid.isStringFull() == true)
+                                                {
+                                                    menu.printAccountEdits(valid, user, "contactNumber");
+                                                    user.setContactNumber(valid.getContactNumber());
+                                                }
+                                                else
+                                                {
+                                                    menu.invalid("Changes denied.\nThe given contact number is blank.");
+                                                }
+                                                menu.pause();
+
+                                            break;
+
+                                            case "6":
+                                                menu.goodbye();
+                                                menu.pause();
+                                            break;
+
+                                            default: 
+                                                menu.invalid("Invalid Input.");
+                                        }
+
+                                    } while(!menu.getAccountEditMenuChoice().trim().equals("6"));
 
                                 break;
 
                                 case "3":
 
+                                    // A flight is booked. show details.
+                                    if(valid.getFlightCheck() == true)
+                                    {
+                                        menu.clearScreen();
+                                        user.viewFlightDetails();
+                                        menu.pause();
+                                    }
+
+                                    // A flight is not yet booked. show this message.
+                                    else
+                                    {
+                                        menu.invalid("You have not booked a flight yet...");
+                                    }
+
                                 break;
 
                                 case "4":
 
+                                    // A flight is booked. Show a menu to change it.
+                                    if(valid.getFlightCheck() == true)
+                                    {
+                                        // Loop 6A : User Flight Menu (Changing Booked Flight)
+                                        do
+                                        {
+                                            menu.clearScreen();
+                                            menu.flightMenuTitle(user.getAccountType());
+                                            plane1.flightMenuOption(1);
+                                            plane2.flightMenuOption(2);
+                                            plane3.flightMenuOption(3);
+                                            menu.flightMenuExit();
+                                            menu.setFlightMenuChoice(menu.stringInput());
+
+                                            switch(menu.getFlightMenuChoice().trim())
+                                            {
+                                                case "1":
+                                                    menu.printUserFlight(user.getFlight(), plane1);
+                                                    user.setFlight(plane1);
+                                                    menu.pause();
+                                                break;
+
+                                                case "2":
+                                                    menu.printUserFlight(user.getFlight(), plane2);
+                                                    user.setFlight(plane2);
+                                                    menu.pause();
+                                                break;
+
+                                                case "3":
+                                                    menu.printUserFlight(user.getFlight(), plane3);
+                                                    user.setFlight(plane3);
+                                                    menu.pause();
+                                                break;
+
+                                                case "4":
+                                                    menu.goodbye();
+                                                    menu.pause();
+                                                break;
+
+                                                default: 
+                                                    menu.invalid("Invalid Input.");
+                                            }
+
+                                        } while(!menu.getFlightMenuChoice().trim().equals("4"));
+
+                                    }
+
+                                    else
+                                    {
+                                        // Loop 6B : User Flight Menu (Pick a flight to book)
+                                        do
+                                        {
+                                            menu.clearScreen();
+                                            menu.flightMenuTitle(user.getAccountType());
+                                            plane1.flightMenuOption(1);
+                                            plane2.flightMenuOption(2);
+                                            plane3.flightMenuOption(3);
+                                            menu.flightMenuExit();
+                                            menu.setFlightMenuChoice(menu.stringInput());
+                                            
+                                            switch(menu.getFlightMenuChoice().trim())
+                                            {
+                                                case "1":
+                                                    menu.printUserFlight(plane1);
+                                                    user.setFlight(plane1);
+                                                    valid.setFlightCheck(true);
+                                                    menu.pause();
+                                                break;
+
+                                                case "2":
+                                                    menu.printUserFlight(plane2);
+                                                    user.setFlight(plane2);
+                                                    valid.setFlightCheck(true);
+                                                    menu.pause();
+                                                break;
+
+                                                case "3":
+                                                    menu.printUserFlight(plane3);
+                                                    user.setFlight(plane3);
+                                                    valid.setFlightCheck(true);
+                                                    menu.pause();
+                                                break;
+
+                                                case "4":
+                                                    menu.goodbye();
+                                                    menu.pause();
+                                                break;
+
+                                                default:
+                                                    menu.invalid("Invalid Input.");
+                                            }
+
+                                        } while(!menu.getFlightMenuChoice().trim().equals("4"));
+
+                                    }
+
                                 break;
 
                                 case "5":
+
+                                    if(valid.getFlightCheck() == true)
+                                    {
+                                        do
+                                        {
+                                            pay.setFlight(user.getFlight());
+                                            menu.clearScreen();
+                                            menu.paymentMenu();
+                                            menu.setPaymentMenuChoice(menu.stringInput());
+
+                                            switch(menu.getPaymentMenuChoice().trim())
+                                            {
+                                                case "1":
+                                                    menu.flightPayment(pay.getFlight());
+                                                    menu.inputLabel("payment: ");
+                                                    pay.setCash(menu.stringInput());
+
+                                                    if(pay.isCashInputValid() == true)
+                                                    {
+                                                        if(pay.cashPayment(pay.getCash()) == true)
+                                                        {
+                                                            menu.flightPaymentReceipt();
+                                                            menu.pause();
+                                                        }
+                                                        else
+                                                        {
+                                                            menu.invalid("Payment Denied.\nThe payment is not enough to pay for this flight...");
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        menu.invalid("Payment Denied.\nThe cash input is not valid number.");
+                                                    }
+
+                                                break;
+
+                                                case "2": 
+                                                    menu.flightPayment(pay.getFlight(), user);
+                                                    menu.inputLabel("Card Number: ");
+                                                    valid.setCardNumber(menu.stringInput());
+                                                break;
+
+                                                case "3":
+                                                    menu.goodbye();
+                                                    menu.pause();
+                                                break;
+
+                                                default:
+                                                    menu.invalid("Invalid Input.");
+                                            }
+                                        } while(!menu.getPaymentMenuChoice().trim().equals("3"));
+                                    }
+
+                                    else
+                                    {
+                                        menu.invalid("Cannot Proceed. No booked flight yet.");
+                                    }
+
+                                break;
+
+                                case "6":
                                     menu.goodbye();
                                     menu.pause();
                                     valid.setLoginCheck(false);
@@ -222,7 +512,7 @@ public class Airlines
                                 break;
                             }
 
-                        } while(!menu.getUserMenuChoice().trim().equals("5"));
+                        } while(!menu.getUserMenuChoice().trim().equals("6"));
                     }
 
                     else

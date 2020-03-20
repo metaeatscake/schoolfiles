@@ -1,0 +1,17 @@
+1.)
+
+Overriding is creating another method with the same name and same parameters while
+Overloading is creating another method with the same name but different parameters.
+
+2.)
+
+One class cannot inherit multiple classes but it can implement(inherit) multiple interfaces.
+Multiple class inheritance is not allowed in java.
+
+3.)
+
+Static variables can be accessed in another class without calling the object, as long as its access modifier is not private.
+Static methods belong to the class, so they do not need to be instantiated. (ie. Math.pow())
+
+Non-static variables cannot be accessed by other classes without calling the object.
+Non-static methods belong to the object, so it requires declaring an object. (ie. scanner.nextLine())

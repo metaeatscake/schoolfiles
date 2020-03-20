@@ -1,0 +1,30 @@
+1.) Accessors
+2.) Constructors
+3.) public
+4.) abstract 
+5.) objects
+6.) Inheritance
+7.) Class 
+8.) Association 
+9.) #
+10.) Override
+11.) Parent Class
+12.) Object name
+13.) Interface
+14.) Constructor 
+15.) default
+16.) protected
+17.) final
+18.) static
+19.) Association 
+20.) Class 
+21.) Composition
+22.) Class variables
+23.) Mutators
+24.) Polymorphism
+25.) Abstraction
+26.) For PlantUML, {static} 
+27.) Child class 
+28.) Overloading
+29.) extends
+30.) implements

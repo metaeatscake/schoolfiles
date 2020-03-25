@@ -1,4 +1,4 @@
-package metaTest;
+package meteatscakeTestPackage;
 
 import org.junit.Test;
 
